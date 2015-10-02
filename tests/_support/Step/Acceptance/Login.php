@@ -29,5 +29,4 @@ class Login extends \AcceptanceTester
         $I = $this;
         $I->amOnPage('/index.php?mid=index&act=dispMemberLogout');
     }
-
 }
