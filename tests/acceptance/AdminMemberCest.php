@@ -197,9 +197,9 @@ class AdminMemberCest
 	
 	/**
 	* @group admin-member
-	* @group admin-member-003
+	* @group admin-member-003-004
 	*/
-	public function admin_member_003_004(AcceptanceTester $I)
+	public function admin_member_003_004(AcceptanceTester $I, Step\Acceptance\Login $login)
 	{
 		$I->wantTo('목록에서 회원 관리@해당 회원에게 쪽지 발송은 잘 되는가?');
 		
@@ -213,13 +213,16 @@ class AdminMemberCest
 		
 		$I->click('div.btnArea input.btn.btn-inverse');
 		$I->acceptPopup();
+		
 		$I->switchToWindow();
-		$receiver = $I->haveFriend('receiver','Step\Acceptance\Login');
-		$receiver->does(function(Step\Acceptance\Login $I) {
-			$I->loginAsUser('email@domain.com','password');
-			$I->amOnPage(XEURL::getNotEncodedUrl('act','dispCommunicationMessages'));
-			$I->see('titie' . sq('title'));
-		});
+		
+		$login->logout();
+		$login->loginAsUser('email@domain.com','password');
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispCommunicationMessages'));
+		$I->see('titie' . sq('title'));
+		$login->logout();
+		$login->loginAsAdmin('admin');
+		$I->saveSessionSnapshot('admin');
 	}
 	
 	/**
@@ -234,5 +237,156 @@ class AdminMemberCest
 		$I->click('tbody tr td input');
 		$I->click('삭제');
 		$I->click('.x_pull-right button.x_btn-inverse');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-004
+	*/
+	public function admin_member_004_001(AcceptanceTester $I)
+	{
+		$I->wantTo('기본 설정@회원정보 동기화는 잘 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
+		$I->click('#member_sync');
+		// @TODO 동기화 여부 검증 추가
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-004
+	*/
+	public function admin_member_004_002(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('기본 설정@회원 가입 허가 설정이 실제 잘 반영되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
+		$I->selectOption('#enable_join_no','N');
+		$I->click('.x_pull-right input.x_btn-primary');
+		
+		$login->logout();
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberSignUpForm'));
+		$I->see('회원 가입할 수 없습니다.');
+		$login->loginAsAdmin('admin');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
+		$I->selectOption('#enable_join_yes','Y');
+		$I->click('.x_pull-right input.x_btn-primary');
+		
+		$login->logout();
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberSignUpForm'));
+		$I->see('회원가입');
+		$login->loginAsAdmin('admin');
+		$I->saveSessionSnapshot('admin');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-004
+	*/
+	public function admin_member_004_005(AcceptanceTester $I)
+	{
+		$I->wantTo('기본 설정@비밀번호 보안수준 설정이 저장되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
+		$I->selectOption('#password_strength1','low');
+		$I->click('.x_pull-right input.x_btn-primary');
+		
+		//low
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberModifyPassword'));
+		$I->see('비밀번호는 4자 이상이어야 합니다.');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
+		
+		$I->selectOption('#password_strength3','high');
+		$I->click('.x_pull-right input.x_btn-primary');
+		
+		//high
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberModifyPassword'));
+		$I->see('비밀번호는 8자리 이상이어야 하며 영문과 숫자, 특수문자를 반드시 포함해야 합니다.');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
+		
+		$I->selectOption('#password_strength2','normal');
+		$I->click('.x_pull-right input.x_btn-primary');
+		
+		//normal
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberModifyPassword'));
+		$I->see('비밀번호는 6자리 이상이어야 하며 영문과 숫자를 반드시 포함해야 합니다.');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-005
+	*/
+	public function admin_member_005_001(AcceptanceTester $I)
+	{
+		$I->wantTo('회원가입 설정@금지 닉네임 추가/삭제는 잘 되는가? (전체 설정을 저장하기 전에 각각 추가, 삭제해보고 전체 설정을 저장한 후에 삭제도 해 본다) / 금지 아이디 관리는 잘 되는가? (전체 설정을 저장하기 전에 각각 추가, 삭제해보고 전체 설정을 저장한 후에 삭제도 해 본다) / 실제 가입/회원 정보 수정 시 금지 닉네임/금지 아이디 적용이 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		$I->fillField('#prohibited_nick_name', 'nickname' . sq('nick'));
+		$I->click('._addDeniedNickName');
+		
+		$I->fillField('#prohibited_id', 'userid' . sq('id'));
+		$I->click('._addDeniedID');
+		
+		/*
+		$I->click('.moduleTrigger');
+		$I->click('Board2');
+		$I->click('.x_btn.x_pull-right.x_btn-primary._ok.x_btn-danger');
+		$I->click('.x_pull-right input.x_btn-primary');
+		*/
+		
+		$I->waitForElement('.x_btn.moduleTrigger',10);
+		$I->see('nickname' . sq('nick'));
+		$I->see('userid' . sq('id'));
+		
+		// normal nickname check
+		$I->executeJS("var _name  = 'nick_name';var _value = 'XEHub';var params = {name:_name, value:_value};var response_tags = ['error','message'];exec_xml('member','procMemberCheckValue', params, function(ret_obj, response_tags, field){if(ret_obj['message']=='success'){document.write('<p class=\"nickcheckResult\">SUCCESS</p>');}else{document.write('<p class=\"nickcheckResult\">FAIL</p>');}} , response_tags);");
+		$I->waitForElement('.nickcheckResult',10);
+		$I->see('SUCCESS');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		// denied nickname check
+		$I->executeJS("var _name  = 'nick_name';var _value = '" . 'nickname' . sq('nick') . "';var params = {name:_name, value:_value};var response_tags = ['error','message'];exec_xml('member','procMemberCheckValue', params, function(ret_obj, response_tags, field){if(ret_obj['message']=='success'){document.write('<p class=\"nickcheckResult\">FAIL</p>');}else{document.write('<p class=\"nickcheckResult\">SUCCESS</p>');}} , response_tags);");
+		$I->waitForElement('.nickcheckResult',10);
+		$I->see('SUCCESS');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		// normal id check
+		$I->executeJS("var _name  = 'user_id';var _value = 'xehub';var params = {name:_name, value:_value};var response_tags = ['error','message'];exec_xml('member','procMemberCheckValue', params, function(ret_obj, response_tags, field){if(ret_obj['message']=='success'){document.write('<p class=\"idcheckResult\">SUCCESS</p>');}else{document.write('<p class=\"idcheckResult\">FAIL</p>');}} , response_tags);");
+		$I->waitForElement('.idcheckResult',10);
+		$I->see('SUCCESS');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		// denied id check
+		$I->executeJS("var _name  = 'user_id';var _value = '" . 'userid' . sq('id') . "';var params = {name:_name, value:_value};var response_tags = ['error','message'];exec_xml('member','procMemberCheckValue', params, function(ret_obj, response_tags, field){if(ret_obj['message']=='success'){document.write('<p class=\"idcheckResult\">FAIL</p>');}else{document.write('<p class=\"idcheckResult\">SUCCESS</p>');}} , response_tags);");
+		$I->waitForElement('.idcheckResult',10);
+		$I->see('SUCCESS');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		$I->executeJS("doUpdateDeniedNickName('" . 'nickname' . sq('nick') . "','delete','SUCCESS');return false;");
+		$I->acceptPopup();
+		
+		$I->executeJS("doUpdateDeniedID('" . 'userid' . sq('id') . "','delete','SUCCESS');return false;");
+		$I->acceptPopup();
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-005
+	*/
+	public function admin_member_005_002(AcceptanceTester $I)
+	{
+		$I->wantTo('회원가입 설정@회원 가입 후 이동할 페이지 선택은 잘 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		$I->click('.moduleTrigger');
+		$I->click('Board2');
+		$I->click('.x_btn.x_pull-right.x_btn-primary._ok.x_btn-danger');
+		$I->click('.x_pull-right input.x_btn-primary');
 	}
 }

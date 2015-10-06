@@ -4,6 +4,7 @@ modules:
         - WebDriver
         - \Helper\Acceptance
         - Sequence
+        - Asserts
     config:
       WebDriver:
         url: 'http://localhost:8000/'

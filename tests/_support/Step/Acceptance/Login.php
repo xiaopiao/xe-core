@@ -9,22 +9,20 @@ class Login extends \AcceptanceTester
     {
         $I = $this;
         $I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberLoginForm'));
-        $I->fillField('#uid', $id);
-        $I->fillField('#upw', $pw);
-        $I->click('.control-group .submit');
-        $I->dontseeElement('.message.error');
-		$I->amOnPage('/');
+		$I->submitForm('#fo_member_login', array(
+		     'user_id' => $id,
+		     'password' => $pw
+		));
     }
 
     public function loginAsAdmin($pw)
     {
         $I = $this;
         $I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberLoginForm'));
-        $I->fillField('#uid', 'admin@admin.net');
-        $I->fillField('#upw', $pw);
-        $I->click('.control-group .submit');
-        $I->dontseeElement('.message.error');
-		$I->amOnPage('/');
+		$I->submitForm('#fo_member_login', array(
+		     'user_id' => 'admin@admin.net',
+		     'password' => $pw
+		));
     }
 
     public function logout()
