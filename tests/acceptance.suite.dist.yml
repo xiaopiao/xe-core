@@ -3,8 +3,8 @@ modules:
     enabled:
         - WebDriver
         - \Helper\Acceptance
+        - Sequence
     config:
       WebDriver:
         url: 'http://localhost:8000/'
         browser: firefox
-        restart: true
