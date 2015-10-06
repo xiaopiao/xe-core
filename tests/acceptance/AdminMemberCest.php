@@ -197,7 +197,7 @@ class AdminMemberCest
 	
 	/**
 	* @group admin-member
-	* @group admin-member-003-004
+	* @group admin-member-003
 	*/
 	public function admin_member_003_004(AcceptanceTester $I, Step\Acceptance\Login $login)
 	{
@@ -388,5 +388,31 @@ class AdminMemberCest
 		$I->click('Board2');
 		$I->click('.x_btn.x_pull-right.x_btn-primary._ok.x_btn-danger');
 		$I->click('.x_pull-right input.x_btn-primary');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-006
+	*/
+	public function admin_member_006_001(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('가입 폼 관리@로그인 계정 변경은 잘 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		$I->selectOption('input[name="identifier"]','user_id');
+		$I->click('.x_pull-right input.x_btn-primary');
+		
+		$login->logout();
+		$login->loginAsUser('admin','admin');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		$I->selectOption('input[name="identifier"]','email_address');
+		$I->click('.x_pull-right input.x_btn-primary');
+		
+		$login->logout();
+		$login->loginAsAdmin('admin');
+		$I->saveSessionSnapshot('admin');
 	}
 }
