@@ -17,4 +17,15 @@ class Acceptance extends \Codeception\Module
 	{
 		$this->getModule("WebDriver")->executeJs("CKEDITOR.instances['$id'].setData(".json_encode($value).")");
 	}
+	
+	/**
+	* Press submit button of admin page
+	*
+	* @param $class
+	*	The class of submit button
+	*/
+	public function XEAdminFormSubmit($class = '.x_pull-right input.x_btn-primary')
+	{
+		$this->getModule("WebDriver")->click($class);
+	}
 }

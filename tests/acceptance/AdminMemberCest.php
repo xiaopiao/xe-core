@@ -1,5 +1,6 @@
 <?php
 use \AcceptanceTester;
+use \Codeception\Util\Locator;
 use Page\XEURLBuilder as XEURL;
 
 class AdminMemberCest
@@ -117,7 +118,7 @@ class AdminMemberCest
 		$I->click('#birthday');
 		$I->selectOption('.ui-datepicker-year','1990');
 		$I->click('.ui-datepicker-calendar a');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 	  
 		$I->amOnPage('/' . $I->executeJS("return jQuery('tbody tr .nowr a')[1].href.replace(request_uri,'')"));
 		$I->see('회원정보 조회/수정');
@@ -143,7 +144,7 @@ class AdminMemberCest
 		$I->click('#birthday');
 		$I->selectOption('.ui-datepicker-year','1991');
 		$I->click('.ui-datepicker-calendar a');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 	  
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList'));
 		$I->amOnPage('/' . $I->executeJS("return jQuery('tbody tr .nowr a')[1].href.replace(request_uri,'')"));
@@ -262,7 +263,7 @@ class AdminMemberCest
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
 		$I->selectOption('#enable_join_no','N');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 		
 		$login->logout();
 		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberSignUpForm'));
@@ -271,7 +272,7 @@ class AdminMemberCest
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
 		$I->selectOption('#enable_join_yes','Y');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 		
 		$login->logout();
 		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberSignUpForm'));
@@ -290,7 +291,7 @@ class AdminMemberCest
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
 		$I->selectOption('#password_strength1','low');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 		
 		//low
 		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberModifyPassword'));
@@ -298,7 +299,7 @@ class AdminMemberCest
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
 		
 		$I->selectOption('#password_strength3','high');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 		
 		//high
 		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberModifyPassword'));
@@ -306,7 +307,7 @@ class AdminMemberCest
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminConfig'));
 		
 		$I->selectOption('#password_strength2','normal');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 		
 		//normal
 		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberModifyPassword'));
@@ -332,7 +333,7 @@ class AdminMemberCest
 		$I->click('.moduleTrigger');
 		$I->click('Board2');
 		$I->click('.x_btn.x_pull-right.x_btn-primary._ok.x_btn-danger');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 		*/
 		
 		$I->waitForElement('.x_btn.moduleTrigger',10);
@@ -387,7 +388,7 @@ class AdminMemberCest
 		$I->click('.moduleTrigger');
 		$I->click('Board2');
 		$I->click('.x_btn.x_pull-right.x_btn-primary._ok.x_btn-danger');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 	}
 	
 	/**
@@ -401,7 +402,7 @@ class AdminMemberCest
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
 		
 		$I->selectOption('input[name="identifier"]','user_id');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 		
 		$login->logout();
 		$login->loginAsUser('admin','admin');
@@ -409,10 +410,226 @@ class AdminMemberCest
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
 		
 		$I->selectOption('input[name="identifier"]','email_address');
-		$I->click('.x_pull-right input.x_btn-primary');
+		$I->XEAdminFormSubmit();
 		
 		$login->logout();
 		$login->loginAsAdmin('admin');
 		$I->saveSessionSnapshot('admin');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-007
+	*/
+	public function admin_member_007_001(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('로그인 설정@비밀번호 갱신주기 설정은 실제 잘 반영되는가? (마지막 변경 일자가 오래 전인 회원으로 로그인하여 테스트)');
+		
+		$date = rand(30,60);
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminLoginConfig'));
+		$I->fillField('change_password_date', $date);
+		$I->XEAdminFormSubmit();
+		
+		$login->logout();
+		$login->loginAsUser('email@domain.com','password');
+		$I->see($date . '일 동안 비밀번호를 변경하지 않았습니다. 개인정보 보호를 위하여 비밀번호를 변경해야 합니다.');
+		
+		$login->logout();
+		$login->loginAsAdmin('admin');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminLoginConfig'));
+		$I->fillField('change_password_date', 0);
+		$I->XEAdminFormSubmit();
+		
+		$I->saveSessionSnapshot('admin');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-007
+	*/
+	public function admin_member_007_002(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('로그인 설정@로그인/로그아웃 후 이동할 주소로 실제 잘 이동하는가?');
+		$defUrl = $I->executeJS('return default_url');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminLoginConfig'));
+		$I->fillField('after_login_url', $defUrl . 'board1');
+		$I->fillField('after_logout_url', $defUrl . 'board2');
+		$I->XEAdminFormSubmit();
+		
+		$login->logout();
+		$login->loginAsUser('email@domain.com','password');
+		$I->see('Board1');
+		
+		$login->logout();
+		$I->see('Board2');
+		$login->loginAsAdmin('admin');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminLoginConfig'));
+		$I->fillField('after_login_url', '');
+		$I->fillField('after_logout_url', '');
+		$I->XEAdminFormSubmit();
+		
+		$I->saveSessionSnapshot('admin');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-007
+	*/
+	public function admin_member_007_003(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('로그인 설정@로그인 시도 회수 제한 설정(횟수/시간)이 실제 잘 반영되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminLoginConfig'));
+		$I->fillField('max_error_count', 3);
+		$I->fillField('max_error_count_time', 10);
+		$I->XEAdminFormSubmit();
+		
+		$login->logout();
+		
+		for($i=1;$i<=3;$i++)
+		{
+			$login->loginAsUser('email@domain.com','wrongpassword');
+		}
+		$login->loginAsUser('email@domain.com','wrongpassword');
+		
+		$I->see('로그인 가능 횟수를 초과했습니다.');
+		$I->wait(10);
+		$login->loginAsUser('email@domain.com','password');
+		$login->logout();
+		
+		$login->loginAsAdmin('admin');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminLoginConfig'));
+		$I->fillField('max_error_count', 10);
+		$I->fillField('max_error_count_time', 300);
+		$I->XEAdminFormSubmit();
+		
+		$I->saveSessionSnapshot('admin');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-008
+	*/
+	public function admin_member_008_001(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('디자인 설정/레이아웃@레이아웃 설정이 잘 반영되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminDesignConfig'));
+		$I->selectOption('#layout','미사용');
+		$I->XEAdminFormSubmit();
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('mid','board1','act','dispMemberInfo'));
+		$I->see('Membership');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('mid','board2','act','dispMemberInfo'));
+		$I->see('Site Logo');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminDesignConfig'));
+		$I->selectOption('#layout','XE 공식 사이트 레이아웃 (xe_official)');
+		$I->XEAdminFormSubmit();
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('mid','board2','act','dispMemberInfo'));
+		$I->see('Powered by XE');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminDesignConfig'));
+		$I->selectOption('#layout','미사용');
+		$I->XEAdminFormSubmit();
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-010
+	*/
+	public function admin_member_010_001(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('그룹 관리@회원 그룹이 잘 추가되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminGroupList'));
+		$I->click('._addGroup');
+		$I->wait(3);
+		$I->fillField('#lang___lang_code_3', 'gggggggg');
+		$I->XEAdminFormSubmit();
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-010
+	*/
+	public function admin_member_010_002(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('그룹 관리@회원 그룹이 잘 수정되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminGroupList'));
+		$I->click('#lang___lang_code_3');
+		$I->fillField('#lang___lang_code_3', 'group');
+		$I->XEAdminFormSubmit();
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-010
+	*/
+	public function admin_member_010_003(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('그룹 관리@회원 그룹이 잘 삭제되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminGroupList'));
+		$I->executeJS("jQuery('._deleteGroup')[3].click()");
+		$I->acceptPopup();
+		$I->XEAdminFormSubmit();
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-010
+	*/
+	public function admin_member_010_006(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('그룹 관리@기본 그룹 선택이 잘 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminGroupList'));
+		$I->selectOption('input[name="defaultGroup"]',3);
+		$I->XEAdminFormSubmit();
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-010
+	*/
+	public function admin_member_010_007(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('그룹 관리@회원 가입시 기본 그룹이 잘 지정되는가?');
+		
+		$randVal = sq('group');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminInsert'));
+		$I->seeElement('.x_controls #identifierForm');
+		$I->fillField('email_address', 'tester' . $randVal . '@xpessengine.com');
+		$I->fillField('password', '1234');
+		$I->fillField('user_id', 'test_id' . $randVal);
+		$I->fillField('user_name', 'test_name' . $randVal);
+		$I->fillField('nick_name', 'test_nick' . $randVal);
+		$I->selectOption('find_account_question','나의 출신 고향은?');
+		$I->fillField('find_account_answer', '꽃피는 산골');
+		$I->fillField('homepage', 'http://example.com/tester' . $randVal);
+		$I->fillField('blog', 'http://blog.example.com/tester' . $randVal);
+		$I->click('#birthday');
+		$I->selectOption('.ui-datepicker-year','1990');
+		$I->click('.ui-datepicker-calendar a');
+		$I->XEAdminFormSubmit();
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList'));
+		$I->see('정회원');
+		
+		$I->click('tbody tr td input');
+		$I->click('삭제');
+		$I->XEAdminFormSubmit('.x_pull-right button.x_btn-inverse');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminGroupList'));
+		$I->selectOption('input[name="defaultGroup"]',2);
+		$I->XEAdminFormSubmit();
 	}
 }
