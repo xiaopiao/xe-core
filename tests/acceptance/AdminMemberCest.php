@@ -69,29 +69,32 @@ class AdminMemberCest
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','email_address','search_keyword','email@domain.com'));
 		$I->seeElement('tbody tr td');
 	  
-		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','regdate','search_keyword',date("Ymd")));
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','regdate','search_keyword','20200101'));
 		$I->seeElement('tbody tr td');
 	  
-		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','regdate_more','search_keyword','19500101'));
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','regdate_more','search_keyword','20190101'));
 		$I->seeElement('tbody tr td');
 	  
-		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','regdate_less','search_keyword','20501231'));
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','regdate_less','search_keyword','19810101'));
 		$I->seeElement('tbody tr td');
 	  
-		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','last_login','search_keyword',date("Ymd")));
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','last_login','search_keyword','20200101'));
 		$I->seeElement('tbody tr td');
 	  
-		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','last_login_more','search_keyword','19500101'));
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','last_login_more','search_keyword','20190101'));
 		$I->seeElement('tbody tr td');
 	  
-		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','last_login_less','search_keyword','20501231'));
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','last_login_less','search_keyword','19810101'));
 		$I->seeElement('tbody tr td');
 	  
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','birthday','search_keyword','20000101'));
 		$I->seeElement('tbody tr td');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList','selected_group_srl',0,'search_target','extra_vars','search_keyword','XEHub'));
+		$I->seeElement('tbody tr td');
 	  
 		$I->click('취소');
-		$I->cantSeeInField('search_keyword', '20000101');
+		$I->cantSeeInField('search_keyword', 'XEHub');
 	}
   
 	/**
@@ -118,6 +121,7 @@ class AdminMemberCest
 		$I->click('#birthday');
 		$I->selectOption('.ui-datepicker-year','1990');
 		$I->click('.ui-datepicker-calendar a');
+		$I->fillField('userdefined', 'olduser' . sq('user'));
 		$I->XEAdminFormSubmit();
 	  
 		$I->amOnPage('/' . $I->executeJS("return jQuery('tbody tr .nowr a')[1].href.replace(request_uri,'')"));
@@ -131,6 +135,7 @@ class AdminMemberCest
 		$I->canSeeInField('find_account_answer', '꽃피는 산골');
 		$I->canSeeInField('homepage', 'http://example.com/tester' . $randVal);
 		$I->canSeeInField('blog', 'http://blog.example.com/tester' . $randVal);
+		$I->canSeeInField('userdefined', 'olduser' . sq('user'));
 	  
 		// edit test
 		$I->fillField('reset_password', 'e' . sq('password'));
@@ -144,6 +149,7 @@ class AdminMemberCest
 		$I->click('#birthday');
 		$I->selectOption('.ui-datepicker-year','1991');
 		$I->click('.ui-datepicker-calendar a');
+		$I->fillField('userdefined', 'user' . sq('user'));
 		$I->XEAdminFormSubmit();
 	  
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList'));
@@ -157,6 +163,7 @@ class AdminMemberCest
 		$I->canSeeInField('find_account_answer', 'XEHub');
 		$I->canSeeInField('homepage', 'http://xe.com/tester' . $randVal);
 		$I->canSeeInField('blog', 'http://blog.xe.com/tester' . $randVal);
+		$I->canSeeInField('userdefined', 'user' . sq('user'));
 	}
 	
 	/**
@@ -525,6 +532,42 @@ class AdminMemberCest
 		$I->XEAdminFormSubmit();
 		
 		$I->saveSessionSnapshot('admin');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-006
+	*/
+	public function admin_member_006_005(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('가입 폼 관리@사용자 정의 항목 추가는 잘 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		$I->click('a.modalAnchor._extendFormEdit.x_btn.xe-modal-window');
+		
+		$I->fillField('column_id', 'id' . sq('id'));
+		$I->fillField('column_title', 'title' . sq('title'));
+		$I->fillField('description', 'desc' . sq('desc'));
+		
+		$I->selectOption('input[name="required"]','N');
+		$I->XEAdminFormSubmit('div.x_modal-footer span.x_pull-right button.x_btn.x_btn-primary');
+		
+		$I->see('title' . sq('title'));
+		
+		$I->executeJS("jQuery('a.modalAnchor._extendFormEdit.xe-modal-window')[1].click();");
+		$I->fillField('column_id', 'e_id' . sq('id'));
+		$I->fillField('column_title', 'e_title' . sq('title'));
+		$I->fillField('description', 'e_desc' . sq('desc'));
+		$I->selectOption('input[name="required"]','Y');
+		$I->XEAdminFormSubmit('div.x_modal-footer span.x_pull-right button.x_btn.x_btn-primary');
+		
+		$I->see('e_title' . sq('title'));
+		
+		$I->executeJS("jQuery('._extendFormDelete')[1].click();");
+		$I->acceptPopup();
+		
+		$I->dontsee('title' . sq('title'));
+		$I->dontsee('e_title' . sq('title'));
 	}
 	
 	/**

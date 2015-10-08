@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.25)
 # Database: uitest
-# Generation Time: 2015-10-08 06:14:52 +0000
+# Generation Time: 2015-10-08 07:04:09 +0000
 # ************************************************************
 
 
@@ -833,7 +833,7 @@ LOCK TABLES `xe_member` WRITE;
 
 INSERT INTO `xe_member` (`member_srl`, `user_id`, `email_address`, `password`, `email_id`, `email_host`, `user_name`, `nick_name`, `find_account_question`, `find_account_answer`, `homepage`, `blog`, `birthday`, `allow_mailing`, `allow_message`, `denied`, `limit_date`, `regdate`, `last_login`, `change_password_date`, `is_admin`, `description`, `extra_vars`, `list_order`)
 VALUES
-	(4,'admin','admin@admin.net','sha256:0008192:lWA6w3klx7BA:N0GllPfXy0+ltxV3rDdBFDa2NFAS4e78','admin','admin.net','admin','Admin',NULL,NULL,'','',NULL,'N','Y','N',NULL,'20151006062111','20151008150852','20151006062111','Y',NULL,NULL,-4),
+	(4,'admin','admin@admin.net','sha256:0008192:lWA6w3klx7BA:N0GllPfXy0+ltxV3rDdBFDa2NFAS4e78','admin','admin.net','admin','Admin',NULL,NULL,'','',NULL,'N','Y','N',NULL,'20151006062111','20151008160108','20151006062111','Y',NULL,NULL,-4),
 	(163,'test_id_56136aad87eec','tester_56136aad87eec@xpessengine.com','sha256:0008192:02gt11G6GCqS:lYXaF5HATsfG0GGb1nX3df1AUDA/cffH','tester_56136aad87eec','xpessengine.com','test_name_56136aad87eec','test_nick_56136aad87eec',4,'꽃피는 산골','http://example.com/tester_56136aad87eec','http://blog.example.com/tester_56136aad87eec','19811001','N','Y','N','','20151006063114','20151006063114','20151006063114','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1981-10-01\";}',-163),
 	(164,'test_id_56136ab2d6c2d','tester_56136ab2d6c2d@xpessengine.com','sha256:0008192:c2Wigsr61Qb9:WxE73lgXefIS0aXvMriSbjdEwNmjfUNc','tester_56136ab2d6c2d','xpessengine.com','test_name_56136ab2d6c2d','test_nick_56136ab2d6c2d',4,'꽃피는 산골','http://example.com/tester_56136ab2d6c2d','http://blog.example.com/tester_56136ab2d6c2d','19851001','N','Y','N','','20151006063119','20151006063119','20151006063119','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1985-10-01\";}',-164),
 	(165,'test_id_56136ab831fdd','tester_56136ab831fdd@xpessengine.com','sha256:0008192:tOshk2wFDrvI:pe5nIlklodlU0eVGHwA3xUaHKa6aUEit','tester_56136ab831fdd','xpessengine.com','test_name_56136ab831fdd','test_nick_56136ab831fdd',4,'꽃피는 산골','http://example.com/tester_56136ab831fdd','http://blog.example.com/tester_56136ab831fdd','19861001','N','Y','N','','20151006063125','20151006063125','20151006063125','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1986-10-01\";}',-165),
@@ -932,11 +932,11 @@ VALUES
 	(258,'test_id_56136ccc8b6e1','tester_56136ccc8b6e1@xpessengine.com','sha256:0008192:vAMs2lzfrDGH:GbcjIOhRhKSShHKmgNY3KBcwvF0IkLDb','tester_56136ccc8b6e1','xpessengine.com','test_name_56136ccc8b6e1','test_nick_56136ccc8b6e1',4,'꽃피는 산골','http://example.com/tester_56136ccc8b6e1','http://blog.example.com/tester_56136ccc8b6e1','19821001','N','Y','N','','20151006064017','20151006064017','20151006064017','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1982-10-01\";}',-258),
 	(259,'test_id_56136cd1e09f7','tester_56136cd1e09f7@xpessengine.com','sha256:0008192:1QeXfHQgS6d4:xFe1FVB5XZrjpirMuFo33FtqfRFztZFe','tester_56136cd1e09f7','xpessengine.com','test_name_56136cd1e09f7','test_nick_56136cd1e09f7',4,'꽃피는 산골','http://example.com/tester_56136cd1e09f7','http://blog.example.com/tester_56136cd1e09f7','19831001','N','Y','N','','20151006064022','20151006064022','20151006064022','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1983-10-01\";}',-259),
 	(260,'test_id_56136cd7528e5','tester_56136cd7528e5@xpessengine.com','sha256:0008192:OEjRdwaVGw0X:z96Anp/ZWw2LyRQMc0mm+qRFGa5sKp06','tester_56136cd7528e5','xpessengine.com','test_name_56136cd7528e5','test_nick_56136cd7528e5',4,'꽃피는 산골','http://example.com/tester_56136cd7528e5','http://blog.example.com/tester_56136cd7528e5','19951001','N','Y','N','','20151006064027','20151006064027','20151006064027','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1995-10-01\";}',-260),
-	(261,'test_id_56136cdc5dd30','tester_56136cdc5dd30@xpessengine.com','sha256:0008192:JiJPaB9L2g8L:Qhz212dr45rGoWDbJMZrSExl4LB5FSIW','tester_56136cdc5dd30','xpessengine.com','test_name_56136cdc5dd30','test_nick_56136cdc5dd30',4,'꽃피는 산골','http://example.com/tester_56136cdc5dd30','http://blog.example.com/tester_56136cdc5dd30','19871001','N','Y','N','','20151006064032','20151006064032','20151006064032','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1987-10-01\";}',-261),
-	(262,'test_id_56136ce1952ff','tester_56136ce1952ff@xpessengine.com','sha256:0008192:TxcCMvuLGUA4:2HG1Oupxv2y4jeVNVgrlhpcGFVQIWMfR','tester_56136ce1952ff','xpessengine.com','test_name_56136ce1952ff','test_nick_56136ce1952ff',4,'꽃피는 산골','http://example.com/tester_56136ce1952ff','http://blog.example.com/tester_56136ce1952ff','19801001','N','Y','N','','20151006064038','20151006064038','20151006064038','N','','O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1980-10-01\";}',-262),
+	(261,'test_id_56136cdc5dd30','tester_56136cdc5dd30@xpessengine.com','sha256:0008192:JiJPaB9L2g8L:Qhz212dr45rGoWDbJMZrSExl4LB5FSIW','tester_56136cdc5dd30','xpessengine.com','test_name_56136cdc5dd30','test_nick_56136cdc5dd30',4,'꽃피는 산골','http://example.com/tester_56136cdc5dd30','http://blog.example.com/tester_56136cdc5dd30','19871001','N','Y','N','','19800101064032','19800101064032','20151006064032','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1987-10-01\";}',-261),
+	(262,'test_id_56136ce1952ff','tester_56136ce1952ff@xpessengine.com','sha256:0008192:TxcCMvuLGUA4:2HG1Oupxv2y4jeVNVgrlhpcGFVQIWMfR','tester_56136ce1952ff','xpessengine.com','test_name_56136ce1952ff','test_nick_56136ce1952ff',4,'꽃피는 산골','http://example.com/tester_56136ce1952ff','http://blog.example.com/tester_56136ce1952ff','19801001','N','Y','N','','20200101064038','20200101064038','20151006064038','N','','O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1980-10-01\";}',-262),
 	(265,'boardmaster','boardmaster@xpressengine.com','sha256:0008192:Tu9U5J17FSsx:aaBuLKO5o+B47E6hNry6pCgEcCjikhO6','boardmaster','xpressengine.com','265','boardmaster',1,'boardmaster','','','','N','Y','N','','20151006064402','20151006064402','20151006064402','N','','O:8:\"stdClass\":1:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";}',-265),
 	(266,'boardsupermaster','boardsupermaster@xpressengine.com','sha256:0008192:8Hl82NuxQyjg:wV3HwYmNSu+Kk/JK6DteSTBS1L/ovJlA','boardsupermaster','xpressengine.com','boardsupermaster','boardsupermaster',1,'boardsupermaster','','',NULL,'N','Y','N','','20151006064427','20151006064427','20151006064427','N',NULL,'O:8:\"stdClass\":1:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";}',-266),
-	(268,'tester','email@domain.com','sha256:0008192:SML1gPcoDF3A:/IIqcI9QB67h6+NrTeOO+q0O5yD85u/f','email','domain.com','tester','tester',1,'tester','','',NULL,'N','Y','N','','20151006065722','20151008150849','20001006065722','N',NULL,'O:8:\"stdClass\":1:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";}',-268),
+	(268,'user_id','email@domain.com','sha256:0008192:SML1gPcoDF3A:/IIqcI9QB67h6+NrTeOO+q0O5yD85u/f','email','domain.com','user_name','nick_name',1,'tester','','','20000101','N','Y','N','','20151006065722','20151008150849','20001006065722','N','','O:8:\"stdClass\":3:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"2000-01-01\";s:11:\"userdefined\";s:5:\"XEHub\";}',-268),
 	(272,'changing','changing@xpressengine.com','sha256:0008192:OG8GxNkoipKB:DncQ9hZ/gZupLra2DhHeI/CHekeC/h0Y','changing','xpressengine.com','changing','new',1,'new','','','','N','Y','N','','20151006071931','20151006071949','20151006071931','N','','O:8:\"stdClass\":1:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";}',-272);
 
 /*!40000 ALTER TABLE `xe_member` ENABLE KEYS */;
@@ -1229,8 +1229,8 @@ VALUES
 	(0,2,262,'20151006064254'),
 	(0,1,266,'20151006064427'),
 	(0,2,265,'20151006064436'),
-	(0,2,268,'20151006065722'),
-	(0,2,272,'20151006072019');
+	(0,2,272,'20151006072019'),
+	(0,2,268,'20151008160322');
 
 /*!40000 ALTER TABLE `xe_member_group_member` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1308,44 +1308,6 @@ CREATE TABLE `xe_member_message` (
   KEY `idx_list_order` (`list_order`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `xe_member_message` WRITE;
-/*!40000 ALTER TABLE `xe_member_message` DISABLE KEYS */;
-
-INSERT INTO `xe_member_message` (`message_srl`, `related_srl`, `sender_srl`, `receiver_srl`, `message_type`, `title`, `content`, `readed`, `list_order`, `regdate`, `readed_date`)
-VALUES
-	(270,271,4,268,'S','titie_56137463810f9','<p>body_56137463cea29</p>','N',-270,'20151006071236',NULL),
-	(271,0,4,268,'R','titie_56137463810f9','<p>body_56137463cea29</p>','N',-271,'20151006071236',NULL),
-	(286,287,4,268,'S','titie_56138261244df','<p>body_5613826170ffa</p>','N',-286,'20151006081217',NULL),
-	(287,0,4,268,'R','titie_56138261244df','<p>body_5613826170ffa</p>','N',-287,'20151006081217',NULL),
-	(290,291,4,268,'S','titie_561385965a924','<p>body_561385969718d</p>','N',-290,'20151006082558',NULL),
-	(291,0,4,268,'R','titie_561385965a924','<p>body_561385969718d</p>','N',-291,'20151006082558',NULL),
-	(294,295,4,268,'S','titie_5613873df394a','<p>body_5613873e22df4</p>','N',-294,'20151006083302',NULL),
-	(295,0,4,268,'R','titie_5613873df394a','<p>body_5613873e22df4</p>','N',-295,'20151006083302',NULL),
-	(297,298,4,268,'S','titie_561387f696f23','<p>body_561387f6c3177</p>','N',-297,'20151006083607',NULL),
-	(298,0,4,268,'R','titie_561387f696f23','<p>body_561387f6c3177</p>','N',-298,'20151006083607',NULL),
-	(300,301,4,268,'S','titie_561388b2645d7','<p>body_561388b28bcc0</p>','N',-300,'20151006083915',NULL),
-	(301,0,4,268,'R','titie_561388b2645d7','<p>body_561388b28bcc0</p>','N',-301,'20151006083915',NULL),
-	(302,303,4,268,'S','titie_5613893d738c7','<p>body_5613893da2e7d</p>','N',-302,'20151006084134',NULL),
-	(303,0,4,268,'R','titie_5613893d738c7','<p>body_5613893da2e7d</p>','N',-303,'20151006084134',NULL),
-	(304,305,4,268,'S','titie_5613897fec7eb','<p>body_56138980247f9</p>','N',-304,'20151006084240',NULL),
-	(305,0,4,268,'R','titie_5613897fec7eb','<p>body_56138980247f9</p>','N',-305,'20151006084240',NULL),
-	(307,308,4,268,'S','titie_56138dbc33be0','<p>body_56138dbc7c6ee</p>','N',-307,'20151006180044',NULL),
-	(308,0,4,268,'R','titie_56138dbc33be0','<p>body_56138dbc7c6ee</p>','N',-308,'20151006180044',NULL),
-	(310,311,268,268,'S','로그인 실패 기록 보고 입니다.','<h2>로그인 실패 기록을 알려드립니다.</h2><ul><li>등록일: 2015-10-07 10:23:52am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:24:27am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:24:29am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:24:30am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li></ul><hr /><p>* 비밀번호를 틀리는 등의 일이 없었는데 이 메시지를 보신다면, 계정 관리에 유의 바랍니다.<br />* 이 메시지는 로그인이 성공한 순간 누적 로그인 실패 기록이 많을 경우, 로그인 성공 이전 실패 기록을 모아서 발송합니다.<br />발송 시각: 2015-10-07 10:27:30am</p>','N',-310,'20151007102730',NULL),
-	(311,0,268,268,'R','로그인 실패 기록 보고 입니다.','<h2>로그인 실패 기록을 알려드립니다.</h2><ul><li>등록일: 2015-10-07 10:23:52am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:24:27am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:24:29am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:24:30am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li></ul><hr /><p>* 비밀번호를 틀리는 등의 일이 없었는데 이 메시지를 보신다면, 계정 관리에 유의 바랍니다.<br />* 이 메시지는 로그인이 성공한 순간 누적 로그인 실패 기록이 많을 경우, 로그인 성공 이전 실패 기록을 모아서 발송합니다.<br />발송 시각: 2015-10-07 10:27:30am</p>','N',-311,'20151007102730',NULL),
-	(313,314,268,268,'S','로그인 실패 기록 보고 입니다.','<h2>로그인 실패 기록을 알려드립니다.</h2><ul><li>등록일: 2015-10-07 10:27:45am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:27:46am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:27:47am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:28:38am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:28:39am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:28:41am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li></ul><hr /><p>* 비밀번호를 틀리는 등의 일이 없었는데 이 메시지를 보신다면, 계정 관리에 유의 바랍니다.<br />* 이 메시지는 로그인이 성공한 순간 누적 로그인 실패 기록이 많을 경우, 로그인 성공 이전 실패 기록을 모아서 발송합니다.<br />발송 시각: 2015-10-07 10:28:53am</p>','N',-313,'20151007102853',NULL),
-	(314,0,268,268,'R','로그인 실패 기록 보고 입니다.','<h2>로그인 실패 기록을 알려드립니다.</h2><ul><li>등록일: 2015-10-07 10:27:45am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:27:46am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:27:47am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:28:38am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:28:39am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-07 10:28:41am<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li></ul><hr /><p>* 비밀번호를 틀리는 등의 일이 없었는데 이 메시지를 보신다면, 계정 관리에 유의 바랍니다.<br />* 이 메시지는 로그인이 성공한 순간 누적 로그인 실패 기록이 많을 경우, 로그인 성공 이전 실패 기록을 모아서 발송합니다.<br />발송 시각: 2015-10-07 10:28:53am</p>','N',-314,'20151007102853',NULL),
-	(341,342,4,268,'S','titie_5615ffe16a08a','<p>body_5615ffe1a7a1a</p>','N',-341,'20151008143217',NULL),
-	(342,0,4,268,'R','titie_5615ffe16a08a','<p>body_5615ffe1a7a1a</p>','N',-342,'20151008143217',NULL),
-	(346,347,268,268,'S','로그인 실패 기록 보고 입니다.','<h2>로그인 실패 기록을 알려드립니다.</h2><ul><li>등록일: 2015-10-08 02:34:40pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:34:41pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:34:42pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:36:48pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:36:50pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:36:51pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li></ul><hr /><p>* 비밀번호를 틀리는 등의 일이 없었는데 이 메시지를 보신다면, 계정 관리에 유의 바랍니다.<br />* 이 메시지는 로그인이 성공한 순간 누적 로그인 실패 기록이 많을 경우, 로그인 성공 이전 실패 기록을 모아서 발송합니다.<br />발송 시각: 2015-10-08 02:36:57pm</p>','N',-346,'20151008143657',NULL),
-	(347,0,268,268,'R','로그인 실패 기록 보고 입니다.','<h2>로그인 실패 기록을 알려드립니다.</h2><ul><li>등록일: 2015-10-08 02:34:40pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:34:41pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:34:42pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:36:48pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:36:50pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:36:51pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li></ul><hr /><p>* 비밀번호를 틀리는 등의 일이 없었는데 이 메시지를 보신다면, 계정 관리에 유의 바랍니다.<br />* 이 메시지는 로그인이 성공한 순간 누적 로그인 실패 기록이 많을 경우, 로그인 성공 이전 실패 기록을 모아서 발송합니다.<br />발송 시각: 2015-10-08 02:36:57pm</p>','N',-347,'20151008143657',NULL),
-	(351,352,4,268,'S','titie_561607e01df5e','<p>body_561607e06647c</p>','N',-351,'20151008150624',NULL),
-	(352,0,4,268,'R','titie_561607e01df5e','<p>body_561607e06647c</p>','N',-352,'20151008150624',NULL),
-	(354,355,268,268,'S','로그인 실패 기록 보고 입니다.','<h2>로그인 실패 기록을 알려드립니다.</h2><ul><li>등록일: 2015-10-08 02:37:53pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:37:54pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:37:56pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 03:08:41pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 03:08:42pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 03:08:43pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li></ul><hr /><p>* 비밀번호를 틀리는 등의 일이 없었는데 이 메시지를 보신다면, 계정 관리에 유의 바랍니다.<br />* 이 메시지는 로그인이 성공한 순간 누적 로그인 실패 기록이 많을 경우, 로그인 성공 이전 실패 기록을 모아서 발송합니다.<br />발송 시각: 2015-10-08 03:08:49pm</p>','N',-354,'20151008150849',NULL),
-	(355,0,268,268,'R','로그인 실패 기록 보고 입니다.','<h2>로그인 실패 기록을 알려드립니다.</h2><ul><li>등록일: 2015-10-08 02:37:53pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:37:54pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 02:37:56pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 03:08:41pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 03:08:42pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li><li>등록일: 2015-10-08 03:08:43pm<ul><li>IP 주소: 127.0.0.1</li><li>message: 잘못된 비밀번호입니다.</li></ul></li></ul><hr /><p>* 비밀번호를 틀리는 등의 일이 없었는데 이 메시지를 보신다면, 계정 관리에 유의 바랍니다.<br />* 이 메시지는 로그인이 성공한 순간 누적 로그인 실패 기록이 많을 경우, 로그인 성공 이전 실패 기록을 모아서 발송합니다.<br />발송 시각: 2015-10-08 03:08:49pm</p>','N',-355,'20151008150849',NULL);
-
-/*!40000 ALTER TABLE `xe_member_message` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table xe_member_scrap
@@ -2454,19 +2416,6 @@ CREATE TABLE `xe_spamfilter_log` (
   KEY `idx_regdate` (`regdate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `xe_spamfilter_log` WRITE;
-/*!40000 ALTER TABLE `xe_spamfilter_log` DISABLE KEYS */;
-
-INSERT INTO `xe_spamfilter_log` (`spamfilter_log_srl`, `ipaddress`, `regdate`)
-VALUES
-	(273,'127.0.0.1','20151006072006'),
-	(312,'127.0.0.1','20151007102730'),
-	(315,'127.0.0.1','20151007102853'),
-	(348,'127.0.0.1','20151008143657'),
-	(356,'127.0.0.1','20151008150849');
-
-/*!40000 ALTER TABLE `xe_spamfilter_log` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table xe_tags
