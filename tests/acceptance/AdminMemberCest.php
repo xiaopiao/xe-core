@@ -107,7 +107,7 @@ class AdminMemberCest
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminInsert'));
 		$I->seeElement('.x_controls #identifierForm');
 		$I->fillField('email_address', 'tester' . $randVal . '@xpessengine.com');
-		$I->fillField('password', '1234');
+		$I->fillField('password', sq('password'));
 		$I->fillField('user_id', 'test_id' . $randVal);
 		$I->fillField('user_name', 'test_name' . $randVal);
 		$I->fillField('nick_name', 'test_nick' . $randVal);
@@ -133,7 +133,7 @@ class AdminMemberCest
 		$I->canSeeInField('blog', 'http://blog.example.com/tester' . $randVal);
 	  
 		// edit test
-		$I->fillField('reset_password', 'e1234');
+		$I->fillField('reset_password', 'e' . sq('password'));
 		$I->fillField('user_id', 'e_test_id' . $randVal);
 		$I->fillField('user_name', 'e_test_name' . $randVal);
 		$I->fillField('nick_name', 'e_test_nick' . $randVal);
@@ -329,13 +329,6 @@ class AdminMemberCest
 		$I->fillField('#prohibited_id', 'userid' . sq('id'));
 		$I->click('._addDeniedID');
 		
-		/*
-		$I->click('.moduleTrigger');
-		$I->click('Board2');
-		$I->click('.x_btn.x_pull-right.x_btn-primary._ok.x_btn-danger');
-		$I->XEAdminFormSubmit();
-		*/
-		
 		$I->waitForElement('.x_btn.moduleTrigger',10);
 		$I->see('nickname' . sq('nick'));
 		$I->see('userid' . sq('id'));
@@ -393,6 +386,29 @@ class AdminMemberCest
 	
 	/**
 	* @group admin-member
+	* @group admin-member-005
+	*/
+	public function admin_member_005_004(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('회원가입 설정@회원 가입 약관은 잘 입력되고 잘 반영되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		$I->waitForElement('#cke_editor1',10);
+		$I->fillCkEditor('agree' . sq('body'));
+		$I->XEAdminFormSubmit();
+		
+		$login->logout();
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberSignUpForm'));
+		$I->see('agree' . sq('body'));
+		
+		$login->loginAsAdmin('admin');
+		$I->saveSessionSnapshot('admin');
+	}
+	
+	//
+	
+	/**
+	* @group admin-member
 	* @group admin-member-006
 	*/
 	public function admin_member_006_001(AcceptanceTester $I, Step\Acceptance\Login $login)
@@ -414,6 +430,100 @@ class AdminMemberCest
 		
 		$login->logout();
 		$login->loginAsAdmin('admin');
+		$I->saveSessionSnapshot('admin');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-006
+	*/
+	public function admin_member_006_002(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('가입 폼 관리@각 항목의 사용 설정은 잘 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		$I->executeJS("jQuery('input[value=\"user_name\"]').attr('checked', false);");
+		$I->XEAdminFormSubmit();
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminInsert'));
+		$I->dontsee('이름');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		$I->executeJS("jQuery('input[value=\"user_name\"]').attr('checked', true);");
+		$I->XEAdminFormSubmit();
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminInsert'));
+		$I->see('이름');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-006
+	*/
+	public function admin_member_006_003(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('가입 폼 관리@각 항목의 공개 설정은 잘 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		
+		$I->executeJS("jQuery('input[value=\"user_name\"]').attr('checked', true);");
+		$I->executeJS("jQuery('input[name=\"is_user_name_public\"]').attr('checked', false);");
+		$I->XEAdminFormSubmit();
+		
+		$login->logout();
+		$login->loginAsUser('email@domain.com','password');
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberInfo','member_srl','265'));
+		$I->dontsee('이름');
+		
+		$login->logout();
+		$login->loginAsAdmin('admin');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		$I->executeJS("jQuery('input[value=\"user_name\"]').attr('checked', true);");
+		$I->executeJS("jQuery('input[name=\"is_user_name_public\"]').attr('checked', true);");
+		$I->XEAdminFormSubmit();
+		
+		$login->logout();
+		$login->loginAsUser('email@domain.com','password');
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberInfo','member_srl','265'));
+		$I->see('이름');
+		
+		$login->logout();
+		$login->loginAsAdmin('admin');
+		$I->saveSessionSnapshot('admin');
+	}
+	
+	/**
+	* @group admin-member
+	* @group admin-member-006
+	*/
+	public function admin_member_006_004(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
+		$I->wantTo('가입 폼 관리@각 항목의 필수/선택 설정은 잘 되는가?');
+		
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		$I->selectOption('input[name="user_name"]','required');
+		$I->XEAdminFormSubmit();
+		
+		$randVal = sq('join');
+		$login->logout();
+		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberSignUpForm'));
+		$I->fillField('email_address', 'jointest' . $randVal . '@xpessengine.com');
+		$I->fillField('password', sq('password'));
+		$I->fillField('password2', sq('password'));
+		$I->fillField('nick_name', 'jointest' . $randVal);
+		$I->fillField('find_account_answer', $randVal);
+		$I->XEAdminFormSubmit('.btnArea .btn.btn-inverse.pull-right');
+		$I->acceptPopup();
+		
+		$I->see('회원가입');
+		
+		$login->logout();
+		$login->loginAsAdmin('admin');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminSignUpConfig'));
+		$I->selectOption('input[name="user_name"]','option');
+		$I->XEAdminFormSubmit();
+		
 		$I->saveSessionSnapshot('admin');
 	}
 	
@@ -483,7 +593,7 @@ class AdminMemberCest
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminLoginConfig'));
 		$I->fillField('max_error_count', 3);
-		$I->fillField('max_error_count_time', 10);
+		$I->fillField('max_error_count_time', 3);
 		$I->XEAdminFormSubmit();
 		
 		$login->logout();
@@ -495,7 +605,7 @@ class AdminMemberCest
 		$login->loginAsUser('email@domain.com','wrongpassword');
 		
 		$I->see('로그인 가능 횟수를 초과했습니다.');
-		$I->wait(10);
+		$I->wait(3);
 		$login->loginAsUser('email@domain.com','password');
 		$login->logout();
 		
@@ -549,7 +659,7 @@ class AdminMemberCest
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminGroupList'));
 		$I->click('._addGroup');
-		$I->wait(3);
+		$I->executeJS("jQuery('._template').remove();");
 		$I->fillField('#lang___lang_code_3', 'gggggggg');
 		$I->XEAdminFormSubmit();
 	}
@@ -563,7 +673,6 @@ class AdminMemberCest
 		$I->wantTo('그룹 관리@회원 그룹이 잘 수정되는가?');
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminGroupList'));
-		$I->click('#lang___lang_code_3');
 		$I->fillField('#lang___lang_code_3', 'group');
 		$I->XEAdminFormSubmit();
 	}
@@ -607,18 +716,10 @@ class AdminMemberCest
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminInsert'));
 		$I->seeElement('.x_controls #identifierForm');
-		$I->fillField('email_address', 'tester' . $randVal . '@xpessengine.com');
-		$I->fillField('password', '1234');
-		$I->fillField('user_id', 'test_id' . $randVal);
-		$I->fillField('user_name', 'test_name' . $randVal);
-		$I->fillField('nick_name', 'test_nick' . $randVal);
-		$I->selectOption('find_account_question','나의 출신 고향은?');
-		$I->fillField('find_account_answer', '꽃피는 산골');
-		$I->fillField('homepage', 'http://example.com/tester' . $randVal);
-		$I->fillField('blog', 'http://blog.example.com/tester' . $randVal);
-		$I->click('#birthday');
-		$I->selectOption('.ui-datepicker-year','1990');
-		$I->click('.ui-datepicker-calendar a');
+		$I->fillField('email_address', 'jointest' . $randVal . '@xpessengine.com');
+		$I->fillField('password', sq('password'));
+		$I->fillField('nick_name', 'jointest' . $randVal);
+		$I->fillField('find_account_answer', $randVal);
 		$I->XEAdminFormSubmit();
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminList'));

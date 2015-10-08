@@ -29,5 +29,6 @@ class Login extends \AcceptanceTester
 	{
 		$I = $this;
 		$I->amOnPage(XEURL::getNotEncodedUrl('act','dispMemberLogout'));
+		$I->wait(1);
 	}
 }

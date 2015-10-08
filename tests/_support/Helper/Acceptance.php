@@ -15,7 +15,7 @@ class Acceptance extends \Codeception\Module
 	*/
 	public function fillCkEditor($value, $id = 'editor1')
 	{
-		$this->getModule("WebDriver")->executeJs("CKEDITOR.instances['$id'].setData(".json_encode($value).")");
+		$this->getModule("WebDriver")->executeJs("CKEDITOR.instances['$id'].setData(\"" . $value . "\")");
 	}
 	
 	/**
