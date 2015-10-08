@@ -593,7 +593,7 @@ class AdminMemberCest
 		
 		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispMemberAdminLoginConfig'));
 		$I->fillField('max_error_count', 3);
-		$I->fillField('max_error_count_time', 3);
+		$I->fillField('max_error_count_time', 5);
 		$I->XEAdminFormSubmit();
 		
 		$login->logout();
@@ -605,7 +605,7 @@ class AdminMemberCest
 		$login->loginAsUser('email@domain.com','wrongpassword');
 		
 		$I->see('로그인 가능 횟수를 초과했습니다.');
-		$I->wait(3);
+		$I->wait(5);
 		$login->loginAsUser('email@domain.com','password');
 		$login->logout();
 		
