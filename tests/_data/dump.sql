@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.25)
 # Database: uitest
-# Generation Time: 2015-10-08 07:04:09 +0000
+# Generation Time: 2015-10-13 09:28:30 +0000
 # ************************************************************
 
 
@@ -277,6 +277,16 @@ CREATE TABLE `xe_comments` (
   KEY `idx_status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `xe_comments` WRITE;
+/*!40000 ALTER TABLE `xe_comments` DISABLE KEYS */;
+
+INSERT INTO `xe_comments` (`comment_srl`, `module_srl`, `document_srl`, `parent_srl`, `is_secret`, `content`, `voted_count`, `blamed_count`, `notify_message`, `password`, `user_id`, `user_name`, `nick_name`, `member_srl`, `email_address`, `homepage`, `uploaded_count`, `regdate`, `last_update`, `ipaddress`, `list_order`, `status`)
+VALUES
+	(362,65,359,0,'N','<p>Board1 노티스 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151013180311','20151013180311','127.0.0.1',-363,1),
+	(368,65,365,0,'N','<p>Board1 일반글 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151013180345','20151013180345','127.0.0.1',-369,1);
+
+/*!40000 ALTER TABLE `xe_comments` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table xe_comments_list
@@ -297,6 +307,16 @@ CREATE TABLE `xe_comments_list` (
   KEY `idx_date` (`module_srl`,`regdate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `xe_comments_list` WRITE;
+/*!40000 ALTER TABLE `xe_comments_list` DISABLE KEYS */;
+
+INSERT INTO `xe_comments_list` (`comment_srl`, `document_srl`, `head`, `arrange`, `module_srl`, `regdate`, `depth`)
+VALUES
+	(362,359,362,362,65,'20151013180311',0),
+	(368,365,368,368,65,'20151013180345',0);
+
+/*!40000 ALTER TABLE `xe_comments_list` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table xe_counter_log
@@ -617,7 +637,11 @@ INSERT INTO `xe_documents` (`document_srl`, `module_srl`, `category_srl`, `lang_
 VALUES
 	(88,63,0,'ko','N','MAIN PAGE\n\nMAIN BODY','N','N','<h1>MAIN PAGE</h1>\n\n<p>MAIN BODY</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','','N;','20151006062112','20151006062205',NULL,'127.0.0.1',-88,-130,'N','N','PUBLIC','DENY'),
 	(89,63,0,'ko','N','Welcome mobile XE','N','N','<link rel=\"stylesheet\" href=\"./layouts/xedition/css/welcome.css\" />\n<div class=\"welcomeXE\">\n	<section class=\"intro\">\n		<span class=\"noti\">WELCOME TO</span>\n		<h1 class=\"tit\">WELCOME TO XPRESSENGINE</h1>\n		<P class=\"cont\">XpressEngine은 자유로운 웹 콘텐츠 발행을 돕는 CMS입니다.<br />간편한 설치와 다양한 추가 프로그램을 활용하여<br /> 자신만의 웹페이지를 쉽고 빠르게 만들 수 있습니다.</P>\n		<a href=\"/index.php?module=admin\" target=\"_blank\" class=\"btn_start\">XE 시작하기</a>\n	</section>\n</div>\n',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151006062112','20151006062112',NULL,'127.0.0.1',-89,-89,'N','N','PUBLIC','DENY'),
-	(274,65,0,'ko','N','예전 닉네임','N','N','<p>old</p>',0,0,0,0,0,0,NULL,'changing','changing','old',272,'changing@xpressengine.com','',NULL,'N;','20151006072006','20151006072006',NULL,'127.0.0.1',-274,-274,'N','N','PUBLIC','ALLOW');
+	(359,65,0,'ko','Y','Board1 노티스','N','N','<p>Board1 노티스</p>',0,0,0,1,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','board1,노티스','N;','20151013180259','20151013180311','Admin','127.0.0.1',-359,-364,'N','N','PUBLIC','ALLOW'),
+	(365,65,0,'ko','N','Board1 일반글','N','N','<p>Board1 일반글 내용</p>',0,0,0,1,0,0,NULL,'user_id','user_name','nick_name',268,'email@domain.com','http://example.com/','board1,일반글','N;','20151013180336','20151013180345','Admin','127.0.0.1',-365,-370,'N','N','PUBLIC','ALLOW'),
+	(371,263,0,'ko','Y','Board2 노티스','N','N','<p>Board2 노티스 내용</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','board2,노티스','N;','20151013180415','20151013180415',NULL,'127.0.0.1',-371,-371,'N','N','PUBLIC','ALLOW'),
+	(374,263,0,'ko','N','Board2 일반글','N','N','<p>Board2 일반글 내용</p>',0,0,0,0,0,0,NULL,'user_id','user_name','nick_name',268,'email@domain.com','','board2,일반글','N;','20151013180440','20151013180440',NULL,'127.0.0.1',-374,-374,'N','N','PUBLIC','ALLOW'),
+	(377,65,0,'ko','N','Board1 비밀글','N','N','<p>Board1 비밀글 내용</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','','N;','20151013181608','20151013181630',NULL,'127.0.0.1',-377,-378,'N','N','SECRET','ALLOW');
 
 /*!40000 ALTER TABLE `xe_documents` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1556,7 +1580,20 @@ INSERT INTO `xe_module_extra_vars` (`module_srl`, `name`, `value`)
 VALUES
 	(63,'page_type','WIDGET'),
 	(63,'regdate','20151006062112'),
-	(65,'regdate','20151006062112'),
+	(65,'consultation','N'),
+	(65,'except_notice','Y'),
+	(65,'list','no,title,nick_name,regdate,readed_count'),
+	(65,'list_count','20'),
+	(65,'mobile_list_count','20'),
+	(65,'mobile_page_count','5'),
+	(65,'mobile_search_list_count','20'),
+	(65,'order_target','list_order'),
+	(65,'order_type','asc'),
+	(65,'page_count','10'),
+	(65,'protect_content','N'),
+	(65,'search_list_count','20'),
+	(65,'use_anonymous','N'),
+	(65,'use_status','PUBLIC|@|SECRET'),
 	(263,'consultation','N'),
 	(263,'except_notice','Y'),
 	(263,'list','no,title,nick_name,regdate,readed_count'),
@@ -1682,7 +1719,8 @@ INSERT INTO `xe_module_part_config` (`module`, `module_srl`, `config`, `regdate`
 VALUES
 	('layout',86,'O:8:\"stdClass\":1:{s:13:\"header_script\";N;}','20151006062137'),
 	('board',263,'a:5:{i:0;s:2:\"no\";i:1;s:5:\"title\";i:2;s:9:\"nick_name\";i:3;s:7:\"regdate\";i:4;s:12:\"readed_count\";}','20151007102940'),
-	('layout',129,'O:8:\"stdClass\":1:{s:13:\"header_script\";N;}','20151007102957');
+	('layout',129,'O:8:\"stdClass\":1:{s:13:\"header_script\";N;}','20151007102957'),
+	('board',65,'a:5:{i:0;s:2:\"no\";i:1;s:5:\"title\";i:2;s:9:\"nick_name\";i:3;s:7:\"regdate\";i:4;s:12:\"readed_count\";}','20151013181619');
 
 /*!40000 ALTER TABLE `xe_module_part_config` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1936,7 +1974,7 @@ DROP TABLE IF EXISTS `xe_sequence`;
 CREATE TABLE `xe_sequence` (
   `seq` bigint(64) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`seq`)
-) ENGINE=InnoDB AUTO_INCREMENT=359 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=379 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `xe_sequence` WRITE;
 /*!40000 ALTER TABLE `xe_sequence` DISABLE KEYS */;
@@ -2300,7 +2338,27 @@ VALUES
 	(355),
 	(356),
 	(357),
-	(358);
+	(358),
+	(359),
+	(360),
+	(361),
+	(362),
+	(363),
+	(364),
+	(365),
+	(366),
+	(367),
+	(368),
+	(369),
+	(370),
+	(371),
+	(372),
+	(373),
+	(374),
+	(375),
+	(376),
+	(377),
+	(378);
 
 /*!40000 ALTER TABLE `xe_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2436,6 +2494,22 @@ CREATE TABLE `xe_tags` (
   KEY `idx_tag` (`document_srl`,`tag`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `xe_tags` WRITE;
+/*!40000 ALTER TABLE `xe_tags` DISABLE KEYS */;
+
+INSERT INTO `xe_tags` (`tag_srl`, `module_srl`, `document_srl`, `tag`, `regdate`)
+VALUES
+	(360,65,359,'board1','20151013180259'),
+	(361,65,359,'노티스','20151013180259'),
+	(366,65,365,'board1','20151013180336'),
+	(367,65,365,'일반글','20151013180336'),
+	(372,263,371,'board2','20151013180415'),
+	(373,263,371,'노티스','20151013180415'),
+	(375,263,374,'board2','20151013180440'),
+	(376,263,374,'일반글','20151013180440');
+
+/*!40000 ALTER TABLE `xe_tags` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table xe_trash

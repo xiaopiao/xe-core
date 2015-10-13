@@ -3,10 +3,9 @@ use \AcceptanceTester;
 
 class AdminSitemapCest
 {
-    public function _before(AcceptanceTester $I, Step\Acceptance\Login $login)
-    {
+	public function _before(AcceptanceTester $I, Step\Acceptance\Login $login)
+	{
 		$I->amOnPage('/');
-		$I->setCookie("__xe_admin_jstree_open_srls", "menu359");
 		if ($I->loadSessionSnapshot('admin')) return;
 		$login->loginAsAdmin('admin');
 		$I->saveSessionSnapshot('admin');
@@ -14,18 +13,18 @@ class AdminSitemapCest
 		$I->amOnPage("/index.php?module=admin");
 		$I->executeJS("doRecompileCacheFile();");
 		$I->acceptPopup();
-    }
+	}
 
-    public function _after(AcceptanceTester $I)
-    {
-    }
+	public function _after(AcceptanceTester $I)
+	{
+	}
 	
 	/**
 	* @group admin-sitemap
 	* @group admin-sitemap-001
 	*/
-    public function admin_sitemap_001_001(AcceptanceTester $I)
-    {
+	public function admin_sitemap_001_001(AcceptanceTester $I)
+	{
 		$I->wantTo("admin_sitemap_001_001");
 		$I->amOnPage("/index.php?module=admin&act=dispMenuAdminSiteMap");
 		$I->wait(2);
@@ -34,28 +33,28 @@ class AdminSitemapCest
 		
 		$I->fillField("#sitemapName", "SITEMAP");
 		$I->click("#add_sitemap .x_btn.x_btn-primary.x_pull-right._save");
-    }
+	}
 	
 	/**
 	* @group admin-sitemap
 	* @group admin-sitemap-001
 	*/
-    public function admin_sitemap_001_002(AcceptanceTester $I)
-    {
+	public function admin_sitemap_001_002(AcceptanceTester $I)
+	{
 		$I->wantTo("admin_sitemap_001_002");
 		$I->amOnPage("/index.php?module=admin&act=dispMenuAdminSiteMap");
 		$I->click("SITEMAP");
 		$I->click("사이트맵 편집");
 		$I->fillField("#sitemapName2", "SITEMAP_");
 		$I->click("#sitemap_general .x_btn.x_btn-primary.x_pull-right._save");
-    }
+	}
 	
 	/**
 	* @group admin-sitemap
 	* @group admin-sitemap-001
 	*/
-    public function admin_sitemap_001_003(AcceptanceTester $I)
-    {
+	public function admin_sitemap_001_003(AcceptanceTester $I)
+	{
 		$I->wantTo("admin_sitemap_001_003");
 		$I->amOnPage("/index.php?module=admin&act=dispMenuAdminSiteMap");
 		$I->click("SITEMAP_");
@@ -64,15 +63,16 @@ class AdminSitemapCest
 		$I->fillField("#lang_menuName2", "SQ");
 		$I->fillField("#lang_menuDesc2", "SQ2");
 		$I->click("//div[@id='add_menu']/fieldset/div/div/button");
-    }
+	}
 	
 	/**
 	* @group admin-sitemap
 	* @group admin-sitemap-001
 	*/
-    public function admin_sitemap_001_004(AcceptanceTester $I)
-    {
+	public function admin_sitemap_001_004(AcceptanceTester $I)
+	{
 		$I->wantTo("admin_sitemap_001_004");
+		$I->setCookie("__xe_admin_jstree_open_srls", "menu359");
 		$I->amOnPage("/index.php?module=admin&act=dispMenuAdminSiteMap");
 		$I->click("SITEMAP_");
 		$I->click("메뉴 추가");
@@ -85,15 +85,16 @@ class AdminSitemapCest
 		$I->wait(2);
 		$href = $I->grabAttributeFrom("#properties section h1 a","href");
 		$I->assertEquals("http://example.com/",$href);
-    }
+	}
 	
 	/**
 	* @group admin-sitemap
 	* @group admin-sitemap-001
 	*/
-    public function admin_sitemap_001_005(AcceptanceTester $I)
-    {
+	public function admin_sitemap_001_005(AcceptanceTester $I)
+	{
 		$I->wantTo("admin_sitemap_001_005");
+		$I->setCookie("__xe_admin_jstree_open_srls", "menu359");
 		$I->amOnPage("/index.php?module=admin&act=dispMenuAdminSiteMap");
 		$defUrl = $I->executeJS('return default_url');
 		$I->click("SITEMAP_");
@@ -108,5 +109,34 @@ class AdminSitemapCest
 		$I->wait(2);
 		$href = $I->grabAttributeFrom("#properties section h1 a","href");
 		$I->assertEquals($defUrl . "board2",$href);
-    }
+	}
+	
+	/**
+	* @group admin-sitemap
+	* @group admin-sitemap-001-012
+	*/
+	public function admin_sitemap_001_012(AcceptanceTester $I)
+	{
+		$I->wantTo("admin_sitemap_001_012");
+		$I->setCookie("__xe_admin_jstree_open_srls", "menu62");
+		$I->amOnPage("/index.php?module=admin&act=dispMenuAdminSiteMap");
+		$I->wait(2);
+		
+		$I->click("Board2");
+		$I->wait(2);
+		$I->click("li.homepage label");
+		$I->wait(1);
+		$I->amOnPage("/");
+		$I->see("Site Logo");
+		
+		$I->amOnPage("/index.php?module=admin&act=dispMenuAdminSiteMap");
+		$I->wait(2);
+		
+		$I->click("Welcome Page");
+		$I->wait(2);
+		$I->click("li.homepage label");
+		$I->wait(1);
+		$I->amOnPage("/");
+		$I->see("MAIN PAGE");
+	}
 }
