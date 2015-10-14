@@ -94,7 +94,7 @@ class AdminMemberCest
 		$I->seeElement('tbody tr td');
 	  
 		$I->click('취소');
-		$I->cantSeeInField('search_keyword', 'XEHub');
+		$I->dontSeeInField('search_keyword', 'XEHub');
 	}
   
 	/**

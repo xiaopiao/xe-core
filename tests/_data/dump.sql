@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.25)
 # Database: uitest
-# Generation Time: 2015-10-13 09:28:30 +0000
+# Generation Time: 2015-10-14 07:59:27 +0000
 # ************************************************************
 
 
@@ -420,6 +420,15 @@ CREATE TABLE `xe_document_declared` (
   KEY `idx_declared_count` (`declared_count`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `xe_document_declared` WRITE;
+/*!40000 ALTER TABLE `xe_document_declared` DISABLE KEYS */;
+
+INSERT INTO `xe_document_declared` (`document_srl`, `declared_count`)
+VALUES
+	(389,1);
+
+/*!40000 ALTER TABLE `xe_document_declared` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table xe_document_declared_log
@@ -438,6 +447,15 @@ CREATE TABLE `xe_document_declared_log` (
   KEY `idx_regdate` (`regdate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `xe_document_declared_log` WRITE;
+/*!40000 ALTER TABLE `xe_document_declared_log` DISABLE KEYS */;
+
+INSERT INTO `xe_document_declared_log` (`document_srl`, `member_srl`, `ipaddress`, `regdate`)
+VALUES
+	(389,4,'127.0.0.1','20151014165645');
+
+/*!40000 ALTER TABLE `xe_document_declared_log` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table xe_document_extra_keys
@@ -641,7 +659,18 @@ VALUES
 	(365,65,0,'ko','N','Board1 일반글','N','N','<p>Board1 일반글 내용</p>',0,0,0,1,0,0,NULL,'user_id','user_name','nick_name',268,'email@domain.com','http://example.com/','board1,일반글','N;','20151013180336','20151013180345','Admin','127.0.0.1',-365,-370,'N','N','PUBLIC','ALLOW'),
 	(371,263,0,'ko','Y','Board2 노티스','N','N','<p>Board2 노티스 내용</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','board2,노티스','N;','20151013180415','20151013180415',NULL,'127.0.0.1',-371,-371,'N','N','PUBLIC','ALLOW'),
 	(374,263,0,'ko','N','Board2 일반글','N','N','<p>Board2 일반글 내용</p>',0,0,0,0,0,0,NULL,'user_id','user_name','nick_name',268,'email@domain.com','','board2,일반글','N;','20151013180440','20151013180440',NULL,'127.0.0.1',-374,-374,'N','N','PUBLIC','ALLOW'),
-	(377,65,0,'ko','N','Board1 비밀글','N','N','<p>Board1 비밀글 내용</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','','N;','20151013181608','20151013181630',NULL,'127.0.0.1',-377,-378,'N','N','SECRET','ALLOW');
+	(377,65,0,'ko','N','Board1 비밀글','N','N','<p>Board1 비밀글 내용</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','','N;','20151013181608','20151013181630',NULL,'127.0.0.1',-377,-378,'N','N','SECRET','ALLOW'),
+	(379,65,0,'ko','N','많이 본 글','N','N','<p>많이 본 글</p>',200,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014140913','20151014140913',NULL,'127.0.0.1',-379,-379,'N','N','PUBLIC','ALLOW'),
+	(380,65,0,'ko','N','대단한 글','N','N','<p>대단한 글</p>',0,20,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014140924','20151014140924',NULL,'127.0.0.1',-380,-380,'N','N','PUBLIC','ALLOW'),
+	(381,65,0,'ko','N','나쁜 글','N','N','<p>나쁜 글</p>',0,0,-10,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014140948','20151014140948',NULL,'127.0.0.1',-381,-381,'N','N','PUBLIC','ALLOW'),
+	(382,65,0,'ko','N','토론','N','N','<p>토론</p>',0,0,0,10,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014141004','20151014141004',NULL,'127.0.0.1',-382,-382,'N','N','PUBLIC','ALLOW'),
+	(383,65,0,'ko','N','파일이 많은 글','N','N','<p>파일이 많은 글</p>',0,0,0,0,0,10,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014141021','20151014141021',NULL,'127.0.0.1',-383,-383,'N','N','PUBLIC','ALLOW'),
+	(384,65,0,'ko','N','오래된 글','N','N','<p>오래된 글</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','19800101141042','20151014141042',NULL,'127.0.0.1',-384,-384,'N','N','PUBLIC','ALLOW'),
+	(385,65,0,'ko','N','방금 수정된 글','N','N','<p>방금 수정된 글</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014141105','20100101141105',NULL,'127.0.0.1',-385,-385,'N','N','PUBLIC','ALLOW'),
+	(386,65,0,'ko','N','출처 불명 글','N','N','<p>출처 불명 글</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014141127','20151014141127',NULL,'192.168.0.1',-386,-386,'N','N','PUBLIC','ALLOW'),
+	(387,65,0,'ko','N','공격받은 문서','N','N','<p>공격받은 문서</p>',0,0,0,0,10,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014141614','20151014141614',NULL,'127.0.0.1',-387,-387,'N','N','PUBLIC','ALLOW'),
+	(388,65,0,'ko','N','임시 저장 글입니다.','N','N','<p>아직 다 쓰지 않았습니다.</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151014165512','20151014165512',NULL,'127.0.0.1',-388,-388,'N','N','TEMP','ALLOW'),
+	(389,65,0,'ko','N','신고당한 글입니다.','N','N','<p>억울합니다</p>',0,0,0,0,0,0,NULL,'user_id','user_name','nick_name',268,'email@domain.com','',NULL,'N;','20151014165537','20151014165537',NULL,'192.168.0.1',-389,-389,'N','N','PUBLIC','ALLOW');
 
 /*!40000 ALTER TABLE `xe_documents` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -857,7 +886,7 @@ LOCK TABLES `xe_member` WRITE;
 
 INSERT INTO `xe_member` (`member_srl`, `user_id`, `email_address`, `password`, `email_id`, `email_host`, `user_name`, `nick_name`, `find_account_question`, `find_account_answer`, `homepage`, `blog`, `birthday`, `allow_mailing`, `allow_message`, `denied`, `limit_date`, `regdate`, `last_login`, `change_password_date`, `is_admin`, `description`, `extra_vars`, `list_order`)
 VALUES
-	(4,'admin','admin@admin.net','sha256:0008192:lWA6w3klx7BA:N0GllPfXy0+ltxV3rDdBFDa2NFAS4e78','admin','admin.net','admin','Admin',NULL,NULL,'','',NULL,'N','Y','N',NULL,'20151006062111','20151008160108','20151006062111','Y',NULL,NULL,-4),
+	(4,'admin','admin@admin.net','sha256:0008192:lWA6w3klx7BA:N0GllPfXy0+ltxV3rDdBFDa2NFAS4e78','admin','admin.net','admin','Admin',NULL,NULL,'','',NULL,'N','Y','N',NULL,'20151006062111','20151014155925','20151006062111','Y',NULL,NULL,-4),
 	(163,'test_id_56136aad87eec','tester_56136aad87eec@xpessengine.com','sha256:0008192:02gt11G6GCqS:lYXaF5HATsfG0GGb1nX3df1AUDA/cffH','tester_56136aad87eec','xpessengine.com','test_name_56136aad87eec','test_nick_56136aad87eec',4,'꽃피는 산골','http://example.com/tester_56136aad87eec','http://blog.example.com/tester_56136aad87eec','19811001','N','Y','N','','20151006063114','20151006063114','20151006063114','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1981-10-01\";}',-163),
 	(164,'test_id_56136ab2d6c2d','tester_56136ab2d6c2d@xpessengine.com','sha256:0008192:c2Wigsr61Qb9:WxE73lgXefIS0aXvMriSbjdEwNmjfUNc','tester_56136ab2d6c2d','xpessengine.com','test_name_56136ab2d6c2d','test_nick_56136ab2d6c2d',4,'꽃피는 산골','http://example.com/tester_56136ab2d6c2d','http://blog.example.com/tester_56136ab2d6c2d','19851001','N','Y','N','','20151006063119','20151006063119','20151006063119','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1985-10-01\";}',-164),
 	(165,'test_id_56136ab831fdd','tester_56136ab831fdd@xpessengine.com','sha256:0008192:tOshk2wFDrvI:pe5nIlklodlU0eVGHwA3xUaHKa6aUEit','tester_56136ab831fdd','xpessengine.com','test_name_56136ab831fdd','test_nick_56136ab831fdd',4,'꽃피는 산골','http://example.com/tester_56136ab831fdd','http://blog.example.com/tester_56136ab831fdd','19861001','N','Y','N','','20151006063125','20151006063125','20151006063125','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1986-10-01\";}',-165),
@@ -1974,7 +2003,7 @@ DROP TABLE IF EXISTS `xe_sequence`;
 CREATE TABLE `xe_sequence` (
   `seq` bigint(64) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`seq`)
-) ENGINE=InnoDB AUTO_INCREMENT=379 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=390 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `xe_sequence` WRITE;
 /*!40000 ALTER TABLE `xe_sequence` DISABLE KEYS */;
@@ -2358,7 +2387,18 @@ VALUES
 	(375),
 	(376),
 	(377),
-	(378);
+	(378),
+	(379),
+	(380),
+	(381),
+	(382),
+	(383),
+	(384),
+	(385),
+	(386),
+	(387),
+	(388),
+	(389);
 
 /*!40000 ALTER TABLE `xe_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
