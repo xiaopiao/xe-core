@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.25)
 # Database: uitest
-# Generation Time: 2015-10-16 07:10:39 +0000
+# Generation Time: 2015-10-19 07:16:38 +0000
 # ************************************************************
 
 
@@ -195,6 +195,15 @@ CREATE TABLE `xe_comment_declared` (
   KEY `idx_declared_count` (`declared_count`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `xe_comment_declared` WRITE;
+/*!40000 ALTER TABLE `xe_comment_declared` DISABLE KEYS */;
+
+INSERT INTO `xe_comment_declared` (`comment_srl`, `declared_count`)
+VALUES
+	(427,1);
+
+/*!40000 ALTER TABLE `xe_comment_declared` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table xe_comment_declared_log
@@ -213,6 +222,15 @@ CREATE TABLE `xe_comment_declared_log` (
   KEY `idx_regdate` (`regdate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `xe_comment_declared_log` WRITE;
+/*!40000 ALTER TABLE `xe_comment_declared_log` DISABLE KEYS */;
+
+INSERT INTO `xe_comment_declared_log` (`comment_srl`, `member_srl`, `ipaddress`, `regdate`)
+VALUES
+	(427,268,'127.0.0.1','20151019161021');
+
+/*!40000 ALTER TABLE `xe_comment_declared_log` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table xe_comment_voted_log
@@ -285,9 +303,18 @@ VALUES
 	(362,65,359,0,'N','<p>Board1 노티스 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151013180311','20151013180311','127.0.0.1',-363,1),
 	(368,65,365,0,'N','<p>Board1 일반글 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151013180345','20151013180345','127.0.0.1',-369,1),
 	(394,65,392,0,'N','<p>보내드립니다.</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151016160546','20151016160546','127.0.0.1',-395,1),
-	(397,65,392,394,'N','<p>감사합니다</p>',0,0,'N',NULL,'user_id','user_name','nick_name',268,'email@domain.com','',0,'20151016160555','20151016160555','192.168.0.1',-398,1),
-	(400,65,393,0,'N','<p>안보이는데요?</p>',0,0,'N',NULL,'user_id','user_name','nick_name',268,'email@domain.com','',0,'20151016160603','20151016160603','192.168.0.1',-401,1),
-	(403,65,393,400,'N','<p>기분 탓입니다.</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151016160615','20151016160615','127.0.0.1',-404,1);
+	(397,65,392,394,'N','<p>감사합니다</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151016160555','20151016160555','192.168.0.1',-398,1),
+	(400,65,393,0,'N','<p>안보이는데요?</p>',0,0,'N',NULL,'admin','admin','Admin',268,'admin@admin.net','',0,'20151016160603','20151016160603','192.168.0.1',-401,1),
+	(403,65,393,400,'N','<p>기분 탓입니다.</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151016160615','20151016160615','127.0.0.1',-404,1),
+	(406,65,359,0,'N','<p>발행 전 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151019154604','20151019154604','127.0.0.1',-407,0),
+	(409,65,359,0,'N','<p>오래된 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'19800101154613','20151019154613','127.0.0.1',-410,1),
+	(412,65,359,0,'N','<p>방금 수정된 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151019154628','20100101154628','127.0.0.1',-413,1),
+	(415,65,359,0,'N','<p>홈페이지가 있는 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','http://example.com',0,'20151019154638','20151019154638','127.0.0.1',-416,1),
+	(418,65,359,0,'N','<p>일반 사용자의 댓글</p>',0,0,'N',NULL,'user_id','user_name','nick_name',268,'email@domain.com','',0,'20151019154650','20151019154650','192.168.0.1',-419,1),
+	(421,65,359,0,'N','<p>휴지통으로 갈 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151019154737','20151019154737','127.0.0.1',-422,1),
+	(424,65,359,0,'N','<p>삭제될 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151019154758','20151019154758','127.0.0.1',-425,1),
+	(427,65,359,0,'N','<p>신고당한 댓글</p>',0,0,'N',NULL,'tester_id_56136aad87eec','tester_name_56136aad87eec','tester_nick_56136aad87eec',163,'tester_56136aad87eec@xpessengine.com','',0,'20151019160551','20151019160551','192.101.101.101',-428,1),
+	(430,65,359,0,'Y','<p>비밀 댓글</p>',0,0,'N',NULL,'admin','admin','Admin',4,'admin@admin.net','',0,'20151019160603','20151019160603','127.0.0.1',-431,1);
 
 /*!40000 ALTER TABLE `xe_comments` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -321,7 +348,16 @@ VALUES
 	(394,392,394,394,65,'20151016160546',0),
 	(397,392,394,397,65,'20151016160555',1),
 	(400,393,400,400,65,'20151016160603',0),
-	(403,393,400,403,65,'20151016160615',1);
+	(403,393,400,403,65,'20151016160615',1),
+	(406,359,406,406,65,'20151019154604',0),
+	(409,359,409,409,65,'20151019154613',0),
+	(412,359,412,412,65,'20151019154628',0),
+	(415,359,415,415,65,'20151019154638',0),
+	(418,359,418,418,65,'20151019154650',0),
+	(421,359,421,421,65,'20151019154737',0),
+	(424,359,424,424,65,'20151019154758',0),
+	(427,359,427,427,65,'20151019160551',0),
+	(430,359,430,430,65,'20151019160603',0);
 
 /*!40000 ALTER TABLE `xe_comments_list` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -663,7 +699,7 @@ INSERT INTO `xe_documents` (`document_srl`, `module_srl`, `category_srl`, `lang_
 VALUES
 	(88,63,0,'ko','N','MAIN PAGE\n\nMAIN BODY','N','N','<h1>MAIN PAGE</h1>\n\n<p>MAIN BODY</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','','N;','20151006062112','20151006062205',NULL,'127.0.0.1',-88,-130,'N','N','PUBLIC','DENY'),
 	(89,63,0,'ko','N','Welcome mobile XE','N','N','<link rel=\"stylesheet\" href=\"./layouts/xedition/css/welcome.css\" />\n<div class=\"welcomeXE\">\n	<section class=\"intro\">\n		<span class=\"noti\">WELCOME TO</span>\n		<h1 class=\"tit\">WELCOME TO XPRESSENGINE</h1>\n		<P class=\"cont\">XpressEngine은 자유로운 웹 콘텐츠 발행을 돕는 CMS입니다.<br />간편한 설치와 다양한 추가 프로그램을 활용하여<br /> 자신만의 웹페이지를 쉽고 빠르게 만들 수 있습니다.</P>\n		<a href=\"/index.php?module=admin\" target=\"_blank\" class=\"btn_start\">XE 시작하기</a>\n	</section>\n</div>\n',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','',NULL,'N;','20151006062112','20151006062112',NULL,'127.0.0.1',-89,-89,'N','N','PUBLIC','DENY'),
-	(359,65,0,'ko','Y','Board1 노티스','N','N','<p>Board1 노티스</p>',0,0,0,1,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','board1,노티스','N;','20151013180259','20151013180311','Admin','127.0.0.1',-359,-364,'N','N','PUBLIC','ALLOW'),
+	(359,65,0,'ko','Y','Board1 노티스','N','N','<p>Board1 노티스</p>',0,0,0,9,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','board1,노티스','N;','20151013180259','20151019160603','Admin','127.0.0.1',-359,-432,'N','N','PUBLIC','ALLOW'),
 	(365,65,0,'ko','N','Board1 일반글','N','N','<p>Board1 일반글 내용</p>',0,0,0,1,0,0,NULL,'user_id','user_name','nick_name',268,'email@domain.com','http://example.com/','board1,일반글','N;','20151013180336','20151013180345','Admin','127.0.0.1',-365,-370,'N','N','PUBLIC','ALLOW'),
 	(371,263,0,'ko','Y','Board2 노티스','N','N','<p>Board2 노티스 내용</p>',0,0,0,0,0,0,NULL,'admin','admin','Admin',4,'admin@admin.net','','board2,노티스','N;','20151013180415','20151013180415',NULL,'127.0.0.1',-371,-371,'N','N','PUBLIC','ALLOW'),
 	(374,263,0,'ko','N','Board2 일반글','N','N','<p>Board2 일반글 내용</p>',0,0,0,0,0,0,NULL,'user_id','user_name','nick_name',268,'email@domain.com','','board2,일반글','N;','20151013180440','20151013180440',NULL,'127.0.0.1',-374,-374,'N','N','PUBLIC','ALLOW'),
@@ -898,7 +934,7 @@ LOCK TABLES `xe_member` WRITE;
 
 INSERT INTO `xe_member` (`member_srl`, `user_id`, `email_address`, `password`, `email_id`, `email_host`, `user_name`, `nick_name`, `find_account_question`, `find_account_answer`, `homepage`, `blog`, `birthday`, `allow_mailing`, `allow_message`, `denied`, `limit_date`, `regdate`, `last_login`, `change_password_date`, `is_admin`, `description`, `extra_vars`, `list_order`)
 VALUES
-	(4,'admin','admin@admin.net','sha256:0008192:lWA6w3klx7BA:N0GllPfXy0+ltxV3rDdBFDa2NFAS4e78','admin','admin.net','admin','Admin',NULL,NULL,'','',NULL,'N','Y','N',NULL,'20151006062111','20151016160428','20151006062111','Y',NULL,NULL,-4),
+	(4,'admin','admin@admin.net','sha256:0008192:lWA6w3klx7BA:N0GllPfXy0+ltxV3rDdBFDa2NFAS4e78','admin','admin.net','admin','Admin',NULL,NULL,'','',NULL,'N','Y','N',NULL,'20151006062111','20151019161027','20151006062111','Y',NULL,NULL,-4),
 	(163,'test_id_56136aad87eec','tester_56136aad87eec@xpessengine.com','sha256:0008192:02gt11G6GCqS:lYXaF5HATsfG0GGb1nX3df1AUDA/cffH','tester_56136aad87eec','xpessengine.com','test_name_56136aad87eec','test_nick_56136aad87eec',4,'꽃피는 산골','http://example.com/tester_56136aad87eec','http://blog.example.com/tester_56136aad87eec','19811001','N','Y','N','','20151006063114','20151006063114','20151006063114','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1981-10-01\";}',-163),
 	(164,'test_id_56136ab2d6c2d','tester_56136ab2d6c2d@xpessengine.com','sha256:0008192:c2Wigsr61Qb9:WxE73lgXefIS0aXvMriSbjdEwNmjfUNc','tester_56136ab2d6c2d','xpessengine.com','test_name_56136ab2d6c2d','test_nick_56136ab2d6c2d',4,'꽃피는 산골','http://example.com/tester_56136ab2d6c2d','http://blog.example.com/tester_56136ab2d6c2d','19851001','N','Y','N','','20151006063119','20151006063119','20151006063119','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1985-10-01\";}',-164),
 	(165,'test_id_56136ab831fdd','tester_56136ab831fdd@xpessengine.com','sha256:0008192:tOshk2wFDrvI:pe5nIlklodlU0eVGHwA3xUaHKa6aUEit','tester_56136ab831fdd','xpessengine.com','test_name_56136ab831fdd','test_nick_56136ab831fdd',4,'꽃피는 산골','http://example.com/tester_56136ab831fdd','http://blog.example.com/tester_56136ab831fdd','19861001','N','Y','N','','20151006063125','20151006063125','20151006063125','N',NULL,'O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1986-10-01\";}',-165),
@@ -1001,7 +1037,7 @@ VALUES
 	(262,'test_id_56136ce1952ff','tester_56136ce1952ff@xpessengine.com','sha256:0008192:TxcCMvuLGUA4:2HG1Oupxv2y4jeVNVgrlhpcGFVQIWMfR','tester_56136ce1952ff','xpessengine.com','test_name_56136ce1952ff','test_nick_56136ce1952ff',4,'꽃피는 산골','http://example.com/tester_56136ce1952ff','http://blog.example.com/tester_56136ce1952ff','19801001','N','Y','N','','20200101064038','20200101064038','20151006064038','N','','O:8:\"stdClass\":2:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"1980-10-01\";}',-262),
 	(265,'boardmaster','boardmaster@xpressengine.com','sha256:0008192:Tu9U5J17FSsx:aaBuLKO5o+B47E6hNry6pCgEcCjikhO6','boardmaster','xpressengine.com','265','boardmaster',1,'boardmaster','','','','N','Y','N','','20151006064402','20151006064402','20151006064402','N','','O:8:\"stdClass\":1:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";}',-265),
 	(266,'boardsupermaster','boardsupermaster@xpressengine.com','sha256:0008192:8Hl82NuxQyjg:wV3HwYmNSu+Kk/JK6DteSTBS1L/ovJlA','boardsupermaster','xpressengine.com','boardsupermaster','boardsupermaster',1,'boardsupermaster','','',NULL,'N','Y','N','','20151006064427','20151006064427','20151006064427','N',NULL,'O:8:\"stdClass\":1:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";}',-266),
-	(268,'user_id','email@domain.com','sha256:0008192:SML1gPcoDF3A:/IIqcI9QB67h6+NrTeOO+q0O5yD85u/f','email','domain.com','user_name','nick_name',1,'tester','','','20000101','N','Y','N','','20151006065722','20151008150849','20001006065722','N','','O:8:\"stdClass\":3:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"2000-01-01\";s:11:\"userdefined\";s:5:\"XEHub\";}',-268),
+	(268,'user_id','email@domain.com','sha256:0008192:SML1gPcoDF3A:/IIqcI9QB67h6+NrTeOO+q0O5yD85u/f','email','domain.com','user_name','nick_name',1,'tester','','','20000101','N','Y','N','','20151006065722','20151019161016','20001006065722','N','','O:8:\"stdClass\":3:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";s:11:\"birthday_ui\";s:10:\"2000-01-01\";s:11:\"userdefined\";s:5:\"XEHub\";}',-268),
 	(272,'changing','changing@xpressengine.com','sha256:0008192:OG8GxNkoipKB:DncQ9hZ/gZupLra2DhHeI/CHekeC/h0Y','changing','xpressengine.com','changing','new',1,'new','','','','N','Y','N','','20151006071931','20151006071949','20151006071931','N','','O:8:\"stdClass\":1:{s:15:\"xe_validator_id\";s:20:\"modules/member/tpl/1\";}',-272);
 
 /*!40000 ALTER TABLE `xe_member` ENABLE KEYS */;
@@ -1761,7 +1797,8 @@ VALUES
 	('layout',86,'O:8:\"stdClass\":1:{s:13:\"header_script\";N;}','20151006062137'),
 	('board',263,'a:5:{i:0;s:2:\"no\";i:1;s:5:\"title\";i:2;s:9:\"nick_name\";i:3;s:7:\"regdate\";i:4;s:12:\"readed_count\";}','20151007102940'),
 	('layout',129,'O:8:\"stdClass\":1:{s:13:\"header_script\";N;}','20151007102957'),
-	('board',65,'a:5:{i:0;s:2:\"no\";i:1;s:5:\"title\";i:2;s:9:\"nick_name\";i:3;s:7:\"regdate\";i:4;s:12:\"readed_count\";}','20151013181619');
+	('board',65,'a:5:{i:0;s:2:\"no\";i:1;s:5:\"title\";i:2;s:9:\"nick_name\";i:3;s:7:\"regdate\";i:4;s:12:\"readed_count\";}','20151013181619'),
+	('comment',65,'O:8:\"stdClass\":4:{s:13:\"comment_count\";i:50;s:11:\"use_vote_up\";s:1:\"Y\";s:13:\"use_vote_down\";s:1:\"Y\";s:22:\"use_comment_validation\";s:1:\"Y\";}','20151019155113');
 
 /*!40000 ALTER TABLE `xe_module_part_config` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2015,7 +2052,7 @@ DROP TABLE IF EXISTS `xe_sequence`;
 CREATE TABLE `xe_sequence` (
   `seq` bigint(64) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`seq`)
-) ENGINE=InnoDB AUTO_INCREMENT=406 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=433 DEFAULT CHARSET=utf8;
 
 LOCK TABLES `xe_sequence` WRITE;
 /*!40000 ALTER TABLE `xe_sequence` DISABLE KEYS */;
@@ -2426,7 +2463,34 @@ VALUES
 	(402),
 	(403),
 	(404),
-	(405);
+	(405),
+	(406),
+	(407),
+	(408),
+	(409),
+	(410),
+	(411),
+	(412),
+	(413),
+	(414),
+	(415),
+	(416),
+	(417),
+	(418),
+	(419),
+	(420),
+	(421),
+	(422),
+	(423),
+	(424),
+	(425),
+	(426),
+	(427),
+	(428),
+	(429),
+	(430),
+	(431),
+	(432);
 
 /*!40000 ALTER TABLE `xe_sequence` ENABLE KEYS */;
 UNLOCK TABLES;

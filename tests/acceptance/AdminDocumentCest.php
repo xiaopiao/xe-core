@@ -23,7 +23,7 @@ class AdminDocumentCest
 	public function admin_document_001_001(AcceptanceTester $I)
 	{
 		$I->wantTo("admin_document_001_001");
-		$I->amOnPage('/index.php?module=admin&act=dispDocumentAdminList');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList'));
 		$I->see('Welcome mobile XE');
 	}
 	
@@ -34,7 +34,7 @@ class AdminDocumentCest
 	public function admin_document_001_002(AcceptanceTester $I)
 	{
 		$I->wantTo("admin_document_001_002");
-		$I->amOnPage('/index.php?module=admin&act=dispDocumentAdminList');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList'));
 		$I->see('임시 저장 글입니다.');
 		$I->click("공개");
 		$I->dontsee('임시 저장 글입니다.');
@@ -53,9 +53,9 @@ class AdminDocumentCest
 	public function admin_document_001_003(AcceptanceTester $I)
 	{
 		$I->wantTo("admin_document_001_003");
-		$I->amOnPage('/index.php?module=admin&act=dispDocumentAdminList');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList'));
 		$I->seeElement('.x_btn-group .x_btn.modalAnchor.xe-modal-window.x_disabled');
-		$I->amOnPage('/index.php?module=admin&act=dispDocumentAdminList&page=2');
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList','page',2));
 		$I->seeElement('.x_btn-group .x_btn.modalAnchor.xe-modal-window.x_disabled');
 	}
 	
