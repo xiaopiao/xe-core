@@ -233,4 +233,116 @@ class AdminCommentCest
 		$I->click('취소');
 		$I->dontSeeInField('search_keyword', '192.168.0.1');
 	}
+
+	/**
+	 * @group admin-document
+	 * @group admin-document-002
+	 */
+	public function admin_comment_002_001(AcceptanceTester $I)
+	{
+		$I->wantTo("admin_comment_002_001");
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList'));
+
+		$I->click("(//a[contains(text(),'휴지통')])[2]");
+		$I->see('선택한 문서가 없습니다.');
+		$I->click('.x_btn.x_btn-inverse.x_pull-right.x_btn-primary._ok');
+
+		$I->click("//a[contains(text(),'삭제')]");
+		$I->see('선택한 문서가 없습니다.');
+		$I->click('.x_btn.x_btn-inverse.x_pull-right.x_btn-primary._ok');
+
+		$I->click("//a[contains(text(),'이동')]");
+		$I->see('선택한 문서가 없습니다.');
+		$I->click('.x_btn.x_btn-inverse.x_pull-right.x_btn-primary._ok');
+
+		$I->click("//a[contains(text(),'복사')]");
+		$I->see('선택한 문서가 없습니다.');
+		$I->click('.x_btn.x_btn-inverse.x_pull-right.x_btn-primary._ok');
+	}
+
+	/**
+	 * @group admin-document
+	 * @group admin-document-002
+	 */
+	public function admin_comment_002_002(AcceptanceTester $I)
+	{
+		$I->wantTo("admin_comment_002_002");
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList'));
+
+		$I->click("(//input[@name='cart'])[3]");
+		$I->click("(//a[contains(text(),'휴지통')])[2]");
+		$I->click("//form[@id='manageForm']/div[3]/button");
+
+		$I->dontSee('휴지통으로 보내질 글입니다.');
+	}
+
+	/**
+	 * @group admin-document
+	 * @group admin-document-002
+	 */
+	public function admin_comment_002_003(AcceptanceTester $I)
+	{
+		$I->wantTo("admin_comment_002_003");
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList'));
+
+		$I->click("(//input[@name='cart'])[3]");
+		$I->click("//a[contains(text(),'삭제')]");
+		$I->click("//form[@id='manageForm']/div[3]/button");
+
+		$I->dontSee('삭제될 글입니다.');
+	}
+
+	/**
+	 * @group admin-document
+	 * @group admin-document-002
+	 */
+	public function admin_comment_002_004(AcceptanceTester $I)
+	{
+		$I->wantTo("admin_comment_002_004");
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList'));
+
+		$I->click("(//input[@name='cart'])[2]");
+		$I->click("//a[contains(text(),'이동')]");
+		$I->executeJS('jQuery("input[name=\'module_srl\']").attr("value",263);');
+		$I->click("//form[@id='manageForm']/div[3]/button");
+
+		$I->amOnPage(XEURL::getNotEncodedUrl('mid','board1'));
+		$I->dontSee('게시판2로 가고 싶은 글');
+
+		$I->amOnPage(XEURL::getNotEncodedUrl('mid','board2'));
+		$I->see('게시판2로 가고 싶은 글');
+		$I->click('게시판2로 가고 싶은 글');
+
+		$I->see('보내드립니다.');
+		$I->see('감사합니다');
+	}
+
+	/**
+	 * @group admin-document
+	 * @group admin-document-002
+	 */
+	public function admin_comment_002_005(AcceptanceTester $I)
+	{
+		$I->wantTo("admin_comment_002_005");
+		$I->amOnPage(XEURL::getNotEncodedUrl('module','admin','act','dispDocumentAdminList'));
+
+		$I->click("input[name=cart]");
+		$I->click("//a[contains(text(),'복사')]");
+		$I->executeJS('jQuery("input[name=\'module_srl\']").attr("value",263);');
+		$I->click("//form[@id='manageForm']/div[3]/button");
+
+		$I->amOnPage(XEURL::getNotEncodedUrl('mid','board1'));
+		$I->see('쌍둥이 게시글');
+		$I->click('쌍둥이 게시글');
+
+		$I->see('안보이는데요?');
+		$I->see('기분 탓입니다.');
+
+		$I->amOnPage(XEURL::getNotEncodedUrl('mid','board2'));
+		$I->see('쌍둥이 게시글');
+		$I->click('쌍둥이 게시글');
+
+		$I->see('안보이는데요?');
+		$I->see('기분 탓입니다.');
+	}
 }
