@@ -4,6 +4,7 @@
 		<value xml:lang="ko"><![CDATA[도움말]]></value>
 		<value xml:lang="en"><![CDATA[Help]]></value>
 		<value xml:lang="jp"><![CDATA[ヘルプ]]></value>
+		<value xml:lang="zh-CN"><![CDATA[帮助]]></value>
 		<value xml:lang="de"><![CDATA[Hilfe]]></value>
 	</item>
 	<item name="cmd_write">
@@ -95,6 +96,7 @@
 		<value xml:lang="en"><![CDATA[Inquiry]]></value>
 		<value xml:lang="jp"><![CDATA[お問い合わせ]]></value>
 		<value xml:lang="de"><![CDATA[Ansichten]]></value>
+		<value xml:lang="zh-CN"><![CDATA[查看]]></value>
 	</item>
 	<item name="all">
 		<value xml:lang="ko"><![CDATA[전체]]></value>
@@ -1161,6 +1163,7 @@
 		<value xml:lang="en"><![CDATA[Retype Password]]></value>
 		<value xml:lang="jp"><![CDATA[パスワード確認]]></value>
 		<value xml:lang="tr"><![CDATA[Şifreyi Tekrar Gir]]></value>
+		<value xml:lang="zh-CN"><![CDATA[确认密码]]></value>
 	</item>
 	<item name="admin_id">
 		<value xml:lang="ko"><![CDATA[관리자ID]]></value>
@@ -1309,6 +1312,7 @@
 		<value xml:lang="ko"><![CDATA[새 제목]]></value>
 		<value xml:lang="en"><![CDATA[New Subject]]></value>
 		<value xml:lang="jp"><![CDATA[ニュータイトル]]></value>
+		<value xml:lang="zh-CN"><![CDATA[新标题]]></value>
 	</item>
 	<item name="title_content">
 		<value xml:lang="ko"><![CDATA[제목+내용]]></value>
@@ -2399,6 +2403,7 @@
 		<value xml:lang="en"><![CDATA[count]]></value>
 		<value xml:lang="jp"><![CDATA[回]]></value>
 		<value xml:lang="de"><![CDATA[Zeit]]></value>
+		<value xml:lang="zh-CN"><![CDATA[次]]></value>
 	</item>
 	<item name="unit_week" type="array">
 		<item name="Monday">
@@ -2633,31 +2638,34 @@
 		<value xml:lang="en"><![CDATA[IP address input format<br />You can use wildcard(*) (ex: 192.168.0.*)<br />You can use hyphen(*) for ip range  (you can't use wild card with hyphen, ex: 192.168.0.1-192.168.0.254)<br />]]></value>
 		<value xml:lang="jp"><![CDATA[IPアドレス入力方法<br />１．ワイルドカード（＊）使用可能（例：192.168.0.*)<br />２．ハイフン（-）を使用して帯域で入力可能<br />（ただし、帯域幅で入力する場合、ワイルドカードは使用不可。例：192.168.0.1-192.168.0.254）<br />３．複数の項目は行を変えて入力してください。]]></value>
 		<value xml:lang="de"><![CDATA[IP adresse eingabeformat<br />Sie können Platzhalter (*) verwenden (zB:. 192.168.0 *)<br />Sie können Bindestrich (*) für IP-Bereich nutzen (können Sie nicht wild card mit Bindestrich, ex: 192.168.0.1-192.168.0.254)]]></value>
-		
 	</item>
 	<item name="msg_invalid_ip">
 		<value xml:lang="ko"><![CDATA[잘못된 IP주소 형식입니다.]]></value>
 		<value xml:lang="en"><![CDATA[Specified IP address is invalid.]]></value>
 		<value xml:lang="jp"><![CDATA[正しくないIPアドレス形式です。]]></value>
 		<value xml:lang="de"><![CDATA[Angegebenen IP adresse ist ungültig.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[IP格式错误]]></value>
 	</item>
 	<item name="msg_no_root">
 		<value xml:lang="ko"><![CDATA[루트는 선택 할 수 없습니다.]]></value>
 		<value xml:lang="en"><![CDATA[You cannot select a root.]]></value>
 		<value xml:lang="jp"><![CDATA[ルートは選択できません。]]></value>
 		<value xml:lang="de"><![CDATA[Sie können eine root nicht auswählen.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[无法选择root]]></value>
 	</item>
 	<item name="msg_no_shortcut">
 		<value xml:lang="ko"><![CDATA[바로가기는 선택 할 수 없습니다.]]></value>
 		<value xml:lang="en"><![CDATA[You cannot select a shortcut.]]></value>
 		<value xml:lang="jp"><![CDATA[ショートカットは選択できません。]]></value>
 		<value xml:lang="de"><![CDATA[Sie können eine verknüpfung nicht auswählen.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[无法选择快捷方式]]></value>
 	</item>
 	<item name="msg_select_menu">
 		<value xml:lang="ko"><![CDATA[대상 메뉴 선택]]></value>
 		<value xml:lang="en"><![CDATA[Select target menu]]></value>
 		<value xml:lang="jp"><![CDATA[対象メニュー選択]]></value>
 		<value xml:lang="de"><![CDATA[Wählen Sie das Menü, das Sie anwenden möchten]]></value>
+		<value xml:lang="zh-CN"><![CDATA[选择对象菜单]]></value>
 	</item>
 	<item name="msg_call_server">
 		<value xml:lang="ko"><![CDATA[서버에 요청 중입니다. 잠시만 기다려주세요.]]></value>
@@ -3023,6 +3031,7 @@
 		<value xml:lang="ko"><![CDATA[복사했습니다.]]></value>
 		<value xml:lang="en"><![CDATA[Copied successfully.]]></value>
 		<value xml:lang="jp"><![CDATA[コピしました。]]></value>
+		<value xml:lang="zh-CN"><![CDATA[复制成功！]]></value>
 	</item>
 	<item name="success_moved">
 		<value xml:lang="ko"><![CDATA[이동했습니다.]]></value>
@@ -3109,6 +3118,7 @@
 		<value xml:lang="jp"><![CDATA[修正されませんでした。]]></value>
 		<value xml:lang="de"><![CDATA[Update fehlgeschlagen]]></value>
 		<value xml:lang="tr"><![CDATA[Güncellenemedi]]></value>
+		<value xml:lang="zh-CN"><![CDATA[修改失败！]]></value>
 	</item>
 	<item name="fail_to_delete">
 		<value xml:lang="ko"><![CDATA[삭제 실패했습니다.]]></value>
@@ -3318,6 +3328,7 @@
 		<value xml:lang="en"><![CDATA[Are you sure you want to process?]]></value>
 		<value xml:lang="jp"><![CDATA[処理しますか？]]></value>
 		<value xml:lang="de"><![CDATA[Sind Sie sicher, dass Sie fortfahren möchten?]]></value>
+		<value xml:lang="zh-CN"><![CDATA[确定处理吗？]></value>
 	</item>
 	<item name="column_type">
 		<value xml:lang="ko"><![CDATA[형식]]></value>
@@ -3854,6 +3865,7 @@
 		<value xml:lang="en"><![CDATA[Mobile]]></value>
 		<value xml:lang="jp"><![CDATA[モバイル]]></value>
 		<value xml:lang="de"><![CDATA[Handy]]></value>
+		<value xml:lang="zh-CN"><![CDATA[移动版]]></value>
 	</item>
 	<item name="mobile_view">
 		<value xml:lang="ko"><![CDATA[모바일 뷰 사용]]></value>
@@ -3932,22 +3944,26 @@
 		<value xml:lang="en"><![CDATA[Yes]]></value>
 		<value xml:lang="jp"><![CDATA[はい]]></value>
 		<value xml:lang="de"><![CDATA[ja]]></value>
+		<value xml:lang="zh-CN"><![CDATA[是]]></value>
 	</item>
 	<item name="not">
 		<value xml:lang="ko"><![CDATA[아니오]]></value>
 		<value xml:lang="en"><![CDATA[No]]></value>
 		<value xml:lang="jp"><![CDATA[いいえ]]></value>
 		<value xml:lang="de"><![CDATA[nicht]]></value>
+		<value xml:lang="zh-CN"><![CDATA[否]]></value>
 	</item>
 	<item name="msg_default_url_is_null">
 		<value xml:lang="ko"><![CDATA[기본 URL 설정이 안 되어 있습니다.]]></value>
 		<value xml:lang="en"><![CDATA[Default url is null.]]></value>
 		<value xml:lang="jp"><![CDATA[基本URLが設定されていません。]]></value>
 		<value xml:lang="de"><![CDATA[Standard URL ist null.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[没设置基本url]]></value>
 	</item>
 	<item name="license_agreement">
 		<value xml:lang="ko"><![CDATA[사용권 동의]]></value>
 		<value xml:lang="en"><![CDATA[License agree]]></value>
+		<value xml:lang="zh-CN"><![CDATA[同意]]></value>
 	</item>
 	<item name="license">
 		<value xml:lang="ko"><![CDATA[<p>Copyright (C) NAVER &lt;http://www.navercorp.com&gt;</p> <p>"XpressEngine (XE)"은 자유 소프트웨어이며, 오픈 소스 프로젝트로 개발되고 있습니다. 자세한 내용은 아래 링크를 참조하시기 바랍니다.</p> <ul> <li>공식 사이트: <a href="http://www.xpressengine.com">http://www.xpressengine.com</a></li> <li>공식 저장소: <a href="http://github.com/xpressengine">http://github.com/xpressengine</a></li> </ul> <p>"XpressEngine (XE)"은 자유 소프트웨어입니다. 소프트웨어의 피양도자는 자유 소프트웨어 재단이 공표한 GNU 약소 일반 공중 사용 허가서 2.1판 또는 그 이후 판을 임의로 선택해서, 그 규정에 따라 소프트웨어를 개작하거나 재배포할 수 있습니다.</p> <p>이 소프트웨어는 유용하게 사용될 수 있으리라는 희망에서 배포되고 있지만, 특정한 목적에 맞는 적합성 여부나 판매용으로 사용할 수 있으리라는 묵시적인 보증을 포함한 어떠한 형태의 보증도 제공하지 않습니다. 보다 자세한 사항에 대해서는 GNU 약소 일반 공중 사용 허가서를 참고하시기 바랍니다.</p> <p>GNU 약소 일반 공중 사용 허가서는 이 라이브러리와 함께 제공됩니다. 만약, 이 문서가 누락되어 있다면 자유 소프트웨어 재단으로 문의하시기 바랍니다. (자유 소프트웨어 재단: Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA)</p> <ul> <li>한국어 번역문 (비공식) : <a href="http://korea.gnu.org/people/chsong/copyleft/lgpl.ko.html" target="_blank">GNU Lesser General Public License, version 2.1</a></li> <li>영문 (공식 원본) : <a href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html" target="_blank">GNU Lesser General Public License, version 2.1</a></li> </ul>]]></value>
@@ -3956,9 +3972,11 @@
 	<item name="cmd_license_agree">
 		<value xml:lang="ko"><![CDATA[사용권에 대해 이해했으며, 이에 동의합니다.]]></value>
 		<value xml:lang="en"><![CDATA[I understand the license. I agree.]]></value>
+		<value xml:lang="zh-CN"><![CDATA[了解协议，并且同意]]></value>
 	</item>
 	<item name="msg_must_accept_license_agreement">
 		<value xml:lang="ko"><![CDATA[사용권에 동의해야 설치할 수 있습니다.]]></value>
 		<value xml:lang="en"><![CDATA[You must accept the license agreement]]></value>
+		<value xml:lang="zh-CN"><![CDATA[同意才能安装]]></value>
 	</item>
 </lang>
